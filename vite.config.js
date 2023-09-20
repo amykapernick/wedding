@@ -1,14 +1,15 @@
-import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { imagetools } from 'vite-imagetools'
+import react from '@vitejs/plugin-react-swc'
 
 export default defineConfig({
 	plugins: [
 		imagetools(),
-		sveltekit({
-			configFile: `./config/svelte.config.js`
-		})
+		react()
 	],
+	build: {
+		minify: false
+	},
 	css: {
 		postcss: './config'
 	}
