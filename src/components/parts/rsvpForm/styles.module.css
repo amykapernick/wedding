@@ -1,0 +1,48 @@
+.person {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -10px;
+
+	& > :global(span), & > :global(fieldset) {
+		flex-grow: 1;
+		width: 45%;
+		margin: 10px;
+	}
+}
+
+.radio {
+	& div {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	& input, & label {
+		margin: 0 0;
+		cursor: pointer;
+	}
+
+	& label {
+		width: calc(100% - 1.5em - 20px);
+		flex-grow: 1;
+		line-height: 2;
+	}
+
+	& input[type="radio"] {
+		width: 1.2em;
+		height: 1.2em;
+		margin-right: 10px;
+	}
+
+	&.short {
+		flex-wrap: nowrap;
+		width: 100%;
+	
+		& label {
+			width: auto;
+			margin-right: 3ch;
+			flex-grow: 0;
+		}
+	}
+}
+

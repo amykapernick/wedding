@@ -2,7 +2,8 @@ module.exports = {
 	extends: [
 		`airbnb-base`,
 		'eslint:recommended',
-		'plugin:svelte/recommended'
+		'plugin:svelte/recommended',
+		'next/core-web-vitals'
 	],
 	parserOptions: {
 		sourceType: 'module',

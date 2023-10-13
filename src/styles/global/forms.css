@@ -15,8 +15,14 @@ form {
 	}
 
 	& button:not([type="submit"]) {
-
-		@include button_secondary;
+		--button_background: var(--button_background);
+		--button_text: $blue;
+		--button_border: $blue;
+	
+		&:hover {
+			--button_background: $blue;
+			--button_text: $white;
+		}
 	}
 }
 
