@@ -1,8 +1,15 @@
+// @ts-check
+
+/**
+ * @type {import('next').NextConfig}
+ **/
+
 const path = require('path')
 
 module.exports = async (phase, { defaultConfig }) => {
 	const nextConfig = {
 		...defaultConfig,
+		reactStrictMode: true
 		// webpack: (webpackConfig, { buildId, dev, isServer, defaultLoaders, webpack }) => {
 		// 	console.log({ webpackConfig })
 		// 	webpackConfig.module.rules.push({

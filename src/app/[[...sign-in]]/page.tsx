@@ -1,14 +1,18 @@
+import Guest from "@parts/guest";
+import { SignIn, SignedIn, SignedOut } from "@clerk/nextjs";
 import { Client } from '@notionhq/client'
 import { currentUser } from '@clerk/nextjs';
 import RSVPForm from '@parts/rsvpForm';
+import { useRef } from 'react';
+import Script from 'next/script';
 
-
-
-const Guest = async () => {
+export default async function Home ()
+{
 	const { emailAddresses } = await currentUser();
 	const notion = new Client({
 		auth: process.env.NOTION_API_KEY
 	})
+
 	const data = await notion.databases.query({
 		database_id: process.env.GUEST_DB,
 		filter: {
@@ -31,9 +35,12 @@ const Guest = async () => {
 
 	return (
 		<>
-			<RSVPForm people={people?.results} />
+			<SignedIn>
+				<Guest people={people?.results} />
+			</SignedIn>
+			<SignedOut>
+				<SignIn />
+			</SignedOut>
 		</>
 	)
 }
-
-export default Guest
