@@ -7,8 +7,8 @@ const Child = (person) => {
 
 	return (
 		<div>
-			<label htmlFor={`name_child_${id}`}>Name</label>
-			<input type="text" name={`name_child_${id}`} id={`name_child_${id}`} defaultValue={name} required />
+			<label htmlFor={`name_${id}`}>Name</label>
+			<input type="text" name={`name_${id}`} id={`name_${id}`} defaultValue={name} required />
 			<fieldset>
 					<legend>Will {name} be attending?</legend>
 					<div>
@@ -20,11 +20,12 @@ const Child = (person) => {
 				</fieldset>
 
 			{status && <>
+				<input type="hidden" name={`child_${id}`} value="true" />
 				<label htmlFor={`age_${id}`}>Age</label>
 			<input type="text" name={`age_${id}`} id={`age_${id}`} required />
 			
-			<label htmlFor={`dietary_child_${id}`}>Dietary requirements</label>
-			<textarea name={`dietary_child_${id}`} id={`dietary_child_${id}`}></textarea>
+			<label htmlFor={`dietary_${id}`}>Dietary requirements</label>
+			<textarea name={`dietary_${id}`} id={`dietary_${id}`}></textarea>
 			</>}
 		</div>
 	)
