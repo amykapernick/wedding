@@ -8,11 +8,8 @@ const mealOptions = ['Steak', 'Fish', 'Vegetarian'];
 
 const Adult = (person) =>
 {
-	const { id, properties } = person
-	const name = properties.Name.title[0].plain_text
-	const [status, setStatus] = useState(properties.Attending.select.name === 'Yes')
-
-	// console.log({ ...properties })
+	const { id, name, attending, dietary, meal } = person
+	const [status, setStatus] = useState(attending === 'Yes')
 
 	return (
 		<div className={styles.person}>
@@ -66,7 +63,7 @@ const Adult = (person) =>
 
 					<span>
 						<label htmlFor={`meal_${ id }`}>Meal</label>
-						<select name={`meal_${ id }`} id={`meal_${ id }`} defaultValue={properties.Meal.select.name} required>
+						<select name={`meal_${ id }`} id={`meal_${ id }`} defaultValue={meal} required>
 							{mealOptions.map(option => (
 								<option value={option} key={option}>{option}</option>
 							))}
@@ -75,7 +72,7 @@ const Adult = (person) =>
 
 					<span>
 						<label htmlFor={`dietary_${ id }`}>Dietary requirements</label>
-						<textarea name={`dietary_${ id }`} id={`dietary_${ id }`} defaultValue={properties['Dietary Requirements'].rich_text[0].text.content}></textarea>
+						<textarea name={`dietary_${ id }`} id={`dietary_${ id }`} defaultValue={dietary}></textarea>
 					</span>
 				</>
 			}

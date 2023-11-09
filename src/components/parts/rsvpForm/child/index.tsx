@@ -4,9 +4,8 @@ import { useState } from "react";
 
 const Child = (person) =>
 {
-	const { id, properties } = person
-	const name = properties.Name.title[0].plain_text
-	const [status, setStatus] = useState(false)
+	const { id, name, attending, dietary, age } = person
+	const [status, setStatus] = useState(attending === 'Yes')
 
 	return (
 		<div>
@@ -25,10 +24,10 @@ const Child = (person) =>
 			{status && <>
 				<input type="hidden" name={`child_${ id }`} value="true" />
 				<label htmlFor={`age_${ id }`}>Age</label>
-				<input type="text" name={`age_${ id }`} id={`age_${ id }`} required />
+				<input type="text" name={`age_${ id }`} id={`age_${ id }`} defaultValue={age} required />
 
 				<label htmlFor={`dietary_${ id }`}>Dietary requirements</label>
-				<textarea name={`dietary_${ id }`} id={`dietary_${ id }`}></textarea>
+				<textarea name={`dietary_${ id }`} id={`dietary_${ id }`} defaultValue={dietary}></textarea>
 			</>}
 		</div>
 	)

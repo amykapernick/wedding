@@ -36,7 +36,14 @@ export default async function Home ()
 	return (
 		<>
 			<SignedIn>
-				<Guest people={people?.results} />
+				<Guest
+					people={people?.results}
+					guest={{
+						id: guest?.id,
+						name: guest.properties.Name.title[0].plain_text,
+						status: guest.properties.Status.status.name
+					}}
+				/>
 			</SignedIn>
 			<SignedOut>
 				<SignIn />

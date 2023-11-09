@@ -11,7 +11,7 @@ const notionFields = {
 	'name': `{"Name": {"title": [{"type": "text","text": {"content": "{{value}}"}}]}}`,
 }
 
-export async function submit (formData: FormData)
+export async function submit (guest, formData: FormData)
 {
 	'use server'
 
@@ -54,6 +54,17 @@ export async function submit (formData: FormData)
 				...properties
 			}
 		})
+	})
+
+	await notion.pages.update({
+		page_id: guest,
+		properties: {
+			Status: {
+				status: {
+					name: 'RSVPed'
+				}
+			}
+		}
 	})
 
 }
