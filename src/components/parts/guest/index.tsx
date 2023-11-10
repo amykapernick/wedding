@@ -3,7 +3,7 @@
 import RSVPForm from '@parts/rsvpForm';
 import { useRef } from 'react';
 import Dialog from '@parts/dialog'
-import { Guest, NotionPerson } from '@ts/people';
+import { Guest as GuestType, NotionPerson } from '@ts/people';
 
 const statuses = {
 	'RSVPed': 'rsvp',
@@ -15,7 +15,7 @@ const statuses = {
 
 type GuestProps = {
 	people: NotionPerson[]
-	guest: Guest
+	guest: GuestType
 
 }
 
