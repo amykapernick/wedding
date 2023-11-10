@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useFormStatus } from 'react-dom'
 
-export function SubmitButton ({ toggleDialog })
+export function SubmitButton ({ closeModal }: { closeModal: () => void })
 {
 	const [submitting, setSubmitting] = useState(false)
 	const { pending } = useFormStatus()
@@ -17,7 +17,7 @@ export function SubmitButton ({ toggleDialog })
 		if (submitting && !pending)
 		{
 			setSubmitting(false)
-			toggleDialog(false)
+			closeModal()
 		}
 	}, [pending])
 

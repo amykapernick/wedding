@@ -1,0 +1,32 @@
+@import '../../../styles/mixins/index';
+
+.dialog {
+	padding-top: 40px;
+	width: 95vw;
+	max-width: 400px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.container {
+	overflow-y: auto;
+	max-height: 80vh;
+	overflow-x: clip;
+}
+
+.close {
+	@include button_text;
+
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 2em;
+}
+
+@media(min-width: 40em) {
+	.dialog {
+		width: 90vw;
+		max-width: 500px;
+		padding: 40px;
+	}
+}

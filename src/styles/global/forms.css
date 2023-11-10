@@ -45,3 +45,7 @@ input, select, textarea {
 	line-height: 1.5;
 	accent-color: $blue;
 }
+
+fieldset {
+	border: none;
+}

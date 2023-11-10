@@ -1,8 +1,9 @@
 'use server'
 
 import { Client } from '@notionhq/client';
+import { Person } from '@ts/people';
 
-const notionFields = {
+const notionFields: Record<string, string> = {
 	'age': '{"Age": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
 	'attending': '{"Attending":{"select":{"name": "{{value}}"}}}',
 	'child': '{"Child": {"checkbox": {{value}}}}',
@@ -11,7 +12,7 @@ const notionFields = {
 	'name': `{"Name": {"title": [{"type": "text","text": {"content": "{{value}}"}}]}}`,
 }
 
-export async function submit (guest, formData: FormData)
+export async function submit (guest: string, formData: FormData)
 {
 	'use server'
 
@@ -20,12 +21,12 @@ export async function submit (guest, formData: FormData)
 	})
 
 	const entries = Object.fromEntries(formData.entries())
-	const updatedData = {}
+	const updatedData: Record<string, Person | {}> = {}
 
 	Object.entries(entries).forEach(([key, value]) =>
 	{
 		const [type, id] = key.split('_')
-		let fieldValue = value
+		let fieldValue = value as string
 
 		if (!notionFields[type]) return;
 
@@ -36,12 +37,14 @@ export async function submit (guest, formData: FormData)
 
 		if (type === 'child')
 		{
-			fieldValue = true
+			fieldValue = 'true'
 		}
+
+		const fieldData = notionFields[type].replace('{{value}}', fieldValue)
 
 		updatedData[id] = {
 			...updatedData[id],
-			...JSON.parse(notionFields[type].replace('{{value}}', fieldValue))
+			...JSON.parse(fieldData)
 		}
 
 	})

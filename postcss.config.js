@@ -9,7 +9,7 @@ module.exports = {
 				variables: {
 					...colours,
 					...variables
-				}
+				},
 			}
 		],
 		'postcss-hexrgba',

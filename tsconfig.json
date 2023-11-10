@@ -29,6 +29,15 @@
       ],
       "@styles/*": [
         "./src/styles/*"
+      ],
+      "@img/*": [
+        "./src/img/*"
+      ],
+      "@ts/*": [
+        "./src/types/*"
+      ],
+      "@app/*": [
+        "./src/app/*"
       ]
     },
     "allowJs": true,

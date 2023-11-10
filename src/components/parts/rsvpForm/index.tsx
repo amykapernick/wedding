@@ -1,47 +1,47 @@
 'use client'
 
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment } from 'react';
 import Adult from './adult';
 import Child from './child';
-import { Client } from '@notionhq/client';
-import { redirect } from 'next/navigation'
-import { revalidatePath } from 'next/cache'
 import styles from './styles.module.css'
 import { SubmitButton } from './submit';
-import { submit } from '../../../app/actions'
+import { submit } from '@app/actions'
+import type { Guest, NotionPerson, Person } from '@ts/people';
 
-import { useFormStatus } from 'react-dom'
+type FormTypes = {
+	people: NotionPerson[]
+	guest: Guest
+	closeModal: () => void
+}
 
-
-const RSVPForm = ({ people, toggleDialog, guest }) =>
+const RSVPForm = ({ people, closeModal, guest }: FormTypes) =>
 {
-	const handleSubmit = submit.bind(null, guest)
+	const handleSubmit = submit.bind(null, guest.id)
 
 	return (
-		<form action={handleSubmit}>
-			<h2>RSVP Now</h2>
-			{people.sort((a, b) => a.properties.Child.checkbox - b.properties.Child.checkbox).map(({ id, properties }) =>
+		<form action={handleSubmit} className={styles.form}>
+			<h2>{guest.name} RSVP</h2>
+			{people.sort((a, b) => Number(a.properties.Child.checkbox) - Number(b.properties.Child.checkbox)).map(({ id, properties }) =>
 			{
-				const data = {
+				const data: Person = {
 					id: id,
 					name: properties.Name.title?.[0]?.plain_text,
 					attending: properties.Attending?.select?.name,
 					meal: properties.Meal?.select?.name,
 					dietary: properties['Dietary Requirements']?.rich_text?.[0]?.text.content,
-					age: properties.Age?.rich_text?.[0]?.text.content
+					age: parseInt(properties.Age?.rich_text?.[0]?.plain_text),
+					child: properties.Child?.checkbox
 				}
 
 				return (
 					<Fragment key={data.id}>
-						{properties.Child?.checkbox ?
-							<Child {...data} />
-							:
-							<Adult {...data} />
-						}
+						{data.child && <Child {...data} />}
+
+						{!data.child && <Adult {...data} />}
 					</Fragment>
 				)
 			})}
-			<SubmitButton toggleDialog={toggleDialog} />
+			<SubmitButton closeModal={closeModal} />
 		</form>
 	)
 }

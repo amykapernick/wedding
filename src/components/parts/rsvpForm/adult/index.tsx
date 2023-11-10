@@ -1,29 +1,36 @@
 'use client'
 
 import { useState } from "react";
-
+import type { Adult as AdultType, MealOptions } from '@ts/people'
 import styles from '../styles.module.css'
 
-const mealOptions = ['Steak', 'Fish', 'Vegetarian'];
+const mealOptions: MealOptions[] = ['Steak', 'Fish', 'Vegetarian'];
 
-const Adult = (person) =>
+const Adult = (person: AdultType) =>
 {
 	const { id, name, attending, dietary, meal } = person
 	const [status, setStatus] = useState(attending === 'Yes')
+	const [nameLength, setNameLength] = useState(name.length)
+	const nameChange = (e: React.ChangeEvent<HTMLInputElement>) => setNameLength(e.target.value.length)
 
 	return (
 		<div className={styles.person}>
 			<fieldset className={[styles.radio, styles.short].join(' ')}>
 				<legend className="sr-only">Will {name} be attending?</legend>
-				<span>
-					<label
-						htmlFor={`name_${ id }`}
-						className="sr-only"
-					>
-						Name
-					</label>
+				<label htmlFor={`name_${ id }`} className="sr-only">Name</label>
+				<span className={styles.name}>
 					Will
-					<input type="text" name={`name_${ id }`} id={`name_${ id }`} defaultValue={name} required />
+					<span>
+						<input
+							type="text"
+							name={`name_${ id }`}
+							id={`name_${ id }`}
+							defaultValue={name}
+							required
+							style={{ '--chars': nameLength } as React.CSSProperties}
+							onChange={nameChange}
+						/>
+					</span>
 					be attending?
 				</span>
 				<div>

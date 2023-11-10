@@ -1,14 +1,35 @@
+.form {
+	padding: 0;
+	text-align: center;
+
+	& :global(fieldset) {
+		padding: 0;
+	}
+
+	& :global(h2) {
+		margin: 0;
+		line-height: 1;
+		text-align: center;
+	}
+
+	& :global(button[type="submit"]) {
+		margin-top: 20px;
+	}
+}
+
 .person {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 0 -10px;
+	margin: 10px 0 20px;
+	text-align: left;
 
 	& > :global(span), & > :global(fieldset) {
 		flex-grow: 1;
-		width: 45%;
-		margin: 10px;
+		/* width: 45%;
+		margin: 10px; */
 	}
 }
+
 
 .radio {
 	& div {
@@ -46,3 +67,24 @@
 	}
 }
 
+
+.name {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 0.8em;
+
+	& input {
+		appearance: none;
+		padding: 0;
+		margin: 0.2em 1ch;
+		flex-grow: 0;
+		width: calc(1ch * var(--chars));
+		border-color: transparent;
+		border-bottom-color: currentColor;
+		border-width: 0.5px;
+		border-image: none;
+		background: transparent;
+		font: inherit;
+	}
+}
