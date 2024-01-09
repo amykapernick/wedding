@@ -9,7 +9,7 @@ import { Converter } from 'showdown'
 const Content = ({ data }: { data: string }) =>
 {
 	const convertTime = (date: string) => new Date(date).toISOString().replace(/[-:]/g, '').replace(/\.\d\d\d/, '')
-	const eventUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${ encodeURIComponent(process.env.NEXT_PUBLIC_EVENT_TITLE) }&details=${ encodeURIComponent(process.env.NEXT_PUBLIC_EVENT_DESCRIPTION) }&location=${ process.env.NEXT_PUBLIC_EVENT_LOCATION }&dates=${ convertTime(process.env.NEXT_PUBLIC_EVENT_START) }%2F${ convertTime(process.env.NEXT_PUBLIC_EVENT_END) }`
+	const eventUrl: any = `https://www.google.com/calendar/render?action=TEMPLATE&text=${ encodeURIComponent(process.env.NEXT_PUBLIC_EVENT_TITLE as string) }&details=${ encodeURIComponent(process.env.NEXT_PUBLIC_EVENT_DESCRIPTION as string) }&location=${ process.env.NEXT_PUBLIC_EVENT_LOCATION as string }&dates=${ convertTime(process.env.NEXT_PUBLIC_EVENT_START as string) }%2F${ convertTime(process.env.NEXT_PUBLIC_EVENT_END as string) }`
 
 	return (
 		<>
