@@ -3,11 +3,13 @@ body {
 	font-family: $font_main;
 	font-size: 1.1em;
 	line-height: 1.5;
+	text-align: center;
 }
 
 h1, h2, h3, h4, h5 {
 	color: $navy;
 	font-family: $font_heading;
+	text-align: center;
 
 	& a {
 		color: inherit;
