@@ -210,6 +210,10 @@
 		&:nth-of-type(3), &:nth-of-type(4) {
 			margin-top: 300px;
 			margin-bottom: 200px;
+
+			& :global(p) {
+				max-width: 520px;
+			}
 		}
 
 		&:last-of-type {
@@ -247,5 +251,17 @@
 	.frame {
 		width: 1600px;
 		margin-left: 400px;
+	} 
+
+	.section {
+		&:nth-of-type(2) {
+			max-width: unset;
+			padding-right: calc(50vw - 500px);
+			padding-left: 50vw;
+
+			& :global(a:has(img:first-child:last-child)) {
+				left: calc(50vw - 500px);
+			}
+		}
 	}
 }

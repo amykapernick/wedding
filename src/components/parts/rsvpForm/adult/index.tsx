@@ -62,16 +62,6 @@ const Adult = (person: AdultType) =>
 
 			{status &&
 				<>
-
-					<span className={styles.long}>
-						<label htmlFor={`meal_${ id }`}>Meal</label>
-						<select name={`meal_${ id }`} id={`meal_${ id }`} defaultValue={meal} required>
-							{mealOptions.map(option => (
-								<option value={option} key={option}>{option}</option>
-							))}
-						</select>
-					</span>
-
 					<span className={styles.long}>
 						<label htmlFor={`dietary_${ id }`}>Dietary requirements</label>
 						<textarea name={`dietary_${ id }`} id={`dietary_${ id }`} defaultValue={dietary}></textarea>

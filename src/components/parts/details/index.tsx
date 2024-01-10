@@ -20,7 +20,7 @@ const Content = ({ data, children }: { data: string, children: any }) =>
 	const calendarButtons = `<span class=${ styles.buttons }><a filename="event.ics" download href="${ ics(event) }" target="_blank">Add to Calendar</a></span>`
 
 	const pageContent = new Converter().makeHtml(data)
-	const sections = pageContent.replace('{{calendar_links}}', calendarButtons).replace('{{map}}', `<img src=${ Map.src } alt="Linked Map to Location" />`).split('<hr />\n')
+	const sections = pageContent.replace('{{calendar_links}}', calendarButtons).replace('{{map}}', `<img src=${ Map.src } alt="Linked Map to Location" />`).replaceAll('<a href="', '<a target="_blank" href="').split('<hr />\n')
 
 	return (
 		<>
