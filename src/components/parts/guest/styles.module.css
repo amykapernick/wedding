@@ -1,0 +1,38 @@
+@import '../../../styles/mixins/index';
+
+.name {
+	margin: 0 auto 40px;	
+
+	& span {
+		font-family: $font_script;
+		text-transform: none;
+		font-size: 3.5em;
+		display: block;
+	}
+}
+
+.button {
+	@include button;
+	@include button_secondary;
+
+	&[aria-disabled="true"] {
+		filter: grayscale(1);
+		pointer-events: none;
+	}
+}
+
+@media(min-width: 40em) {
+	.name {
+		& span {
+			font-size: 4.5em;
+		}
+	}
+}
+
+@media(min-width: 60em) {
+	.name {
+		& span {
+			font-size: 6em;
+		}
+	}
+}

@@ -1,3 +1,5 @@
+@import '../../../styles/mixins/index';
+
 .header {
 	position: relative;
 }
@@ -28,9 +30,21 @@
 		display: block;
 		font-size: 0.3em;
 		margin-top: 1em;
-		font-family: $font_subheading;
+		font-family: $font_heading;
 		text-transform: uppercase;
 	}
+}
+
+.button {
+	@include button;
+	@include button_secondary;
+
+	--button_background: $white;
+
+	position: absolute;
+	bottom: 50px;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 @media(min-width: 40em) {
@@ -47,7 +61,6 @@
 @media(min-width: 60em) {
 	.heading {
 		font-size: 7em;
-		/* top: 10vh; */
 
 		& span {
 			font-size: 0.2em;
@@ -56,6 +69,24 @@
 
 	.image {
 		max-height: 100vh;
+	}
+
+	
+}
+
+@media(min-width: 70em) {
+	.button {	
+		bottom: auto;
+		top: 50px;
+		left: 50%;
+		transform: translateX(-50%);
+		margin-left: 500px;
+	}
+}
+
+@media(min-width: 80em) {
+	.button {	
+		margin-left: 550px;
 	}
 }
 

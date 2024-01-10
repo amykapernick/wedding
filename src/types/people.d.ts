@@ -4,7 +4,11 @@ export type MealOptions = 'Vegetarian' | 'Fish' | 'Steak'
 
 export type PersonDefaults = {
 	id: string
-	name: string
+	name: {
+		first: string
+		last: string
+		full: string
+	}
 	attending: 'Yes' | 'No'
 	dietary: string
 }
@@ -26,6 +30,16 @@ export type NotionPerson = {
 	properties: {
 		Name: {
 			title: {
+				plain_text: string
+			}[]
+		}
+		'First Name': {
+			rich_text: {
+				plain_text: string
+			}[]
+		}
+		'Last Name': {
+			rich_text: {
 				plain_text: string
 			}[]
 		}

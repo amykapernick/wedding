@@ -13,6 +13,7 @@ const Header = () =>
 				className={styles.image}
 				placeholder="blur"
 			/>
+			<a className={styles.button} href="#rsvp">RSVP</a>
 		</header>
 	)
 }

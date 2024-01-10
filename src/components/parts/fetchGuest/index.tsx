@@ -38,15 +38,16 @@ const FetchData = async () =>
 
 	return (
 		<>
-			<Guest
-				people={people?.results as NotionPerson[]}
-				guest={{
-					id: guest?.id,
-					name: guest.properties.Name.title[0].plain_text,
-					status: guest.properties.Status.status.name
-				}}
-			/>
-			<Content data={n2m.toMarkdownString(pageData)?.parent} />
+			<Content data={n2m.toMarkdownString(pageData)?.parent}>
+				<Guest
+					people={people?.results as NotionPerson[]}
+					guest={{
+						id: guest?.id,
+						name: guest.properties.Name.title[0].plain_text,
+						status: guest.properties.Status.status.name
+					}}
+				/>
+			</Content>
 		</>
 	)
 }

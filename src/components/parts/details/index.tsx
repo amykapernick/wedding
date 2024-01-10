@@ -1,28 +1,38 @@
-import Guest from "@parts/guest";
-import { Client } from '@notionhq/client'
-import { currentUser } from '@clerk/nextjs';
-import type { NotionPerson, NotionGuest } from "@ts/people";
-import type { User } from "@clerk/nextjs/server";
-// import Calendar from '@img/icons/calendar.svg'
 import { Converter } from 'showdown'
+import FrameTop from '@img/frame_top.png'
+import Image from 'next/image'
+import Monogram from '@img/monogram.svg'
+import Map from '@img/map.png'
+import { ics, CalendarEvent } from 'calendar-link'
 
-const Content = ({ data }: { data: string }) =>
+import styles from './styles.module.css'
+
+const Content = ({ data, children }: { data: string, children: any }) =>
 {
-	const convertTime = (date: string) => new Date(date).toISOString().replace(/[-:]/g, '').replace(/\.\d\d\d/, '')
-	const eventUrl: any = `https://www.google.com/calendar/render?action=TEMPLATE&text=${ encodeURIComponent(process.env.NEXT_PUBLIC_EVENT_TITLE as string) }&details=${ encodeURIComponent(process.env.NEXT_PUBLIC_EVENT_DESCRIPTION as string) }&location=${ process.env.NEXT_PUBLIC_EVENT_LOCATION as string }&dates=${ convertTime(process.env.NEXT_PUBLIC_EVENT_START as string) }%2F${ convertTime(process.env.NEXT_PUBLIC_EVENT_END as string) }`
+	const event: CalendarEvent = {
+		title: process.env.NEXT_PUBLIC_EVENT_TITLE as string,
+		description: process.env.NEXT_PUBLIC_EVENT_DESCRIPTION as string,
+		start: process.env.NEXT_PUBLIC_EVENT_START as string,
+		end: process.env.NEXT_PUBLIC_EVENT_END as string,
+		location: process.env.NEXT_PUBLIC_EVENT_LOCATION as string,
+	}
+
+	const calendarButtons = `<span class=${ styles.buttons }><a filename="event.ics" download href="${ ics(event) }" target="_blank">Add to Calendar</a></span>`
+
+	const pageContent = new Converter().makeHtml(data)
+	const sections = pageContent.replace('{{calendar_links}}', calendarButtons).replace('{{map}}', `<img src=${ Map.src } alt="Linked Map to Location" />`).split('<hr />\n')
 
 	return (
 		<>
-			<h1>Content</h1>
-			<a
-				href={eventUrl}
-				target="_blank"
-				className="btn"
-			>
-				{/* <Calendar /> */}
-				<span>Add to Google Calendar</span>
-			</a>
-			<div dangerouslySetInnerHTML={{ __html: new Converter().makeHtml(data) }} />
+			<div className={styles.content}>
+				<Image src={FrameTop} alt="" className={styles.frame} />
+				<Monogram className={styles.monogram} />
+				{sections.map(section => (
+					<section className={styles.section} dangerouslySetInnerHTML={{ __html: section }} />
+				))}
+
+			</div>
+			{children}
 		</>
 	)
 }

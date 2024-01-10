@@ -14,6 +14,11 @@
 	overflow-x: clip;
 }
 
+.open {
+	@include button;
+	@include button_secondary;
+}
+
 .close {
 	@include button_text;
 

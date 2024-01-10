@@ -33,7 +33,7 @@ const Dialog = ({ children, openButton, dialog, closeModal, openModal }: DialogP
 					{children}
 				</div>
 			</dialog>
-			<button onClick={handleOpen}>
+			<button className={styles.open} onClick={handleOpen}>
 				{openButton}
 			</button>
 		</>

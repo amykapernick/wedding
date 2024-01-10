@@ -9,12 +9,13 @@
 	background: var(--button_background);
 	color: var(--button_text);
 	font-family: var(--font_headings);
-	font-size: 1.1em;
+	font-size: 1em;
 	font-weight: 500;
 	cursor: pointer;
 	text-decoration: none;
 	display: inline-flex;
 	align-items: center;
+	text-transform: inherit;
 
 	&:hover {
 		--button_background: var(--button_background);

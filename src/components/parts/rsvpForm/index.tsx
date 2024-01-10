@@ -12,20 +12,24 @@ type FormTypes = {
 	people: NotionPerson[]
 	guest: Guest
 	closeModal: () => void
+	open: boolean
 }
 
-const RSVPForm = ({ people, closeModal, guest }: FormTypes) =>
+const RSVPForm = ({ people, closeModal, guest, open }: FormTypes) =>
 {
 	const handleSubmit = submit.bind(null, guest.id)
 
 	return (
-		<form action={handleSubmit} className={styles.form}>
-			<h2>{guest.name} RSVP</h2>
+		<form action={handleSubmit} className={styles.form} data-open={open}>
 			{people.sort((a, b) => Number(a.properties.Child.checkbox) - Number(b.properties.Child.checkbox)).map(({ id, properties }) =>
 			{
 				const data: Person = {
 					id: id,
-					name: properties.Name.title?.[0]?.plain_text,
+					name: {
+						full: properties.Name.title?.[0]?.plain_text,
+						first: properties['First Name'].rich_text?.[0]?.plain_text,
+						last: properties['Last Name'].rich_text?.[0]?.plain_text
+					},
 					attending: properties.Attending?.select?.name,
 					meal: properties.Meal?.select?.name,
 					dietary: properties['Dietary Requirements']?.rich_text?.[0]?.text.content,
