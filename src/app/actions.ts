@@ -58,7 +58,7 @@ export async function submit (guest: string, formData: FormData)
 		await notion.pages.update({
 			page_id: id,
 			properties: {
-				...properties
+				...properties as any
 			}
 		})
 	})
