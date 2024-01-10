@@ -2,14 +2,15 @@ body {
 	color: $neutral;
 	font-family: $font_main;
 	font-size: 1.1em;
-	line-height: 1.5;
+	line-height: 1.6;
 	text-align: center;
+	font-weight: 300;
+	text-transform: uppercase;
 }
 
 h1, h2, h3, h4, h5 {
 	color: $navy;
 	font-family: $font_heading;
-	text-align: center;
 
 	& a {
 		color: inherit;
@@ -24,6 +25,7 @@ h1, h2, h3, h4, h5 {
 h1 {
 	font-size: 2em;
 	font-weight: 700;
+	text-transform: none;
 }
 
 h2 {
@@ -68,4 +70,11 @@ nav {
 
 button, .btn, input[type="submit"] {
 	@include button;
+}
+
+p {
+	width: 90%;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
 }

@@ -1,6 +1,6 @@
 .form {
 	padding: 0;
-	text-align: center;
+	text-align: left;
 
 	& :global(fieldset) {
 		padding: 0;
@@ -9,7 +9,6 @@
 	& :global(h2) {
 		margin: 0;
 		line-height: 1;
-		text-align: center;
 	}
 
 	& :global(button[type="submit"]) {

@@ -3,6 +3,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
+		"build:local": "doppler run -- npm run build",
 		"lint": "next lint",
 		"start": "doppler run -- npm run dev",
 		"clean": "rm -rf .next"
