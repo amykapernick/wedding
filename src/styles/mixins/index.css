@@ -1,7 +1,19 @@
-@import 'layout';
+@import './layout.css';
 
-@import 'theme';
+@import './theme.css';
 
-@import 'a11y';
+@import './a11y.css';
 
-@import 'parts';
+@import './parts.css';
+
+@mixin sr_only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+

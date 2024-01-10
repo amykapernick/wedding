@@ -1,7 +1,7 @@
 @mixin button {
-	--button_background: $blue;
+	--button_background: $green;
 	--button_text: $white;
-	--button_border: $blue;
+	--button_border: $green;
 
 	padding: 0.5em 1em;
 	border: 2px solid var(--button_border);
@@ -12,27 +12,37 @@
 	font-size: 1.1em;
 	font-weight: 500;
 	cursor: pointer;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
 
 	&:hover {
 		--button_background: var(--button_background);
-		--button_text: $blue;
+		--button_text: $green;
+	}
+
+	& svg {
+		height: 1em;
+		width: auto;
+		display: block;
+		margin: 0 1ch;
 	}
 }  
 
 @mixin button_secondary {
 	--button_background: var(--button_background);
-	--button_text: $blue;
-	--button_border: $blue;
+	--button_text: $green;
+	--button_border: $green;
 
 	&:hover {
-		--button_background: $blue;
+		--button_background: $green;
 		--button_text: $white;
 	}
 }
 
 @mixin button_text {
 	--button_background: transparent;
-	--button_text: $blue;
+	--button_text: $green;
 
 	display: inline-flex;
 	padding: 0;
@@ -40,8 +50,33 @@
 
 	&:hover {
 		--button_background: transparent;
-		--button_text: $blue;
+		--button_text: $green;
 
 		text-decoration: underline;
 	}
+}
+
+@mixin input {
+	display: block;
+	width: 100%;
+	margin: 0.1em 0 0.5em;
+	padding: 0.5em 1em;
+	border: 1px solid $green;
+	border-radius: 0;
+	background: $white;
+	box-shadow: none;
+	line-height: 1.5;
+	accent-color: $green;
+	font-size: 1em;
+	height: auto;
+	color: $green;
+	font-weight: 600;
+}
+
+@mixin label {
+	display: block;
+	margin: 0.5em 0 0.1em;
+	color: $neutral;
+	font-weight: 600;
+	text-transform: uppercase;
 }

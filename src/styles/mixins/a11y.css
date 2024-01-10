@@ -8,7 +8,7 @@
 	clip: rect(0, 0, 0, 0);
 	border: 0;
 }
-  
+
 @mixin remove_sr_only {
 	position: static;
 	width: auto;

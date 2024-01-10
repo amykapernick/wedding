@@ -1,0 +1,14 @@
+dialog {
+	padding: 20px;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 0 10px 32px 0 $black;
+	max-width: 90vw;
+}
+
+::backdrop {
+	opacity: 0.85;
+	background: $black;
+	cursor: pointer;
+	pointer-events: all;
+}

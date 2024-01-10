@@ -1,7 +1,127 @@
-/* @font-face {
+@font-face {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 600;
+	font-display: block;
+	src: url('/fonts/Montserrat-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: Montserrat;
+	font-style: italic;
+	font-weight: 500;
+	font-display: block;
+	src: url('/fonts/Montserrat-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 500;
+	font-display: block;
+	src: url('/fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: Montserrat;
+	font-style: italic;
+	font-weight: 600;
+	font-display: block;
+	src: url('/fonts/Montserrat-SemiBoldItalic.ttf') format('truetype');
+}
+
+@font-face {
 	font-family: Montserrat;
 	font-style: normal;
 	font-weight: 400;
 	font-display: block;
 	src: url('/fonts/Montserrat-Regular.ttf') format('truetype');
-} */
+}
+
+@font-face {
+	font-family: Montserrat;
+	font-style: italic;
+	font-weight: 400;
+	font-display: block;
+	src: url('/fonts/Montserrat-Italic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 700;
+	font-display: block;
+	src: url('/fonts/Montserrat-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: Montserrat;
+	font-style: italic;
+	font-weight: 700;
+	font-display: block;
+	src: url('/fonts/Montserrat-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: "Golden Hopes";
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url('/fonts/GoldenHopes.otf') format('opentype');
+}
+
+@font-face {
+	font-family: "Abhaya Libre";
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url('/fonts/AbhayaLibre-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: "Abhaya Libre";
+	font-style: normal;
+	font-weight: 500;
+	font-display: block;
+	src: url('/fonts/AbhayaLibre-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: "Abhaya Libre";
+	font-style: normal;
+	font-weight: 600;
+	font-display: block;
+	src: url('/fonts/AbhayaLibre-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: "Abhaya Libre";
+	font-style: normal;
+	font-weight: 700;
+	font-display: block;
+	src: url('/fonts/AbhayaLibre-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: "Abhaya Libre";
+	font-style: normal;
+	font-weight: 800;
+	font-display: block;
+	src: url('/fonts/AbhayaLibre-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: Baskervville;
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url('/fonts/Baskervville-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: Baskervville;
+	font-style: italic;
+	font-weight: 400;
+	font-display: block;
+	src: url('/fonts/Baskervville-Italic.ttf') format('truetype');
+}

@@ -1,0 +1,35 @@
+.cl-signIn-root {
+	margin: 0 auto;
+
+	& .cl-card {
+		box-shadow: none;
+		background: none;
+		padding: 0;
+	}
+
+	& .cl-header, & .cl-logoBox {
+		display: none;
+	}
+
+	& .cl-footer {
+		display: none;
+
+		& + div {
+			display: none; 
+		}
+	}
+
+	& .cl-form {
+		& input, & select, & textarea {
+			@include input;
+		}
+
+		& label, & legend {
+			@include label;
+		}
+	}
+
+	& .cl-formButtonPrimary {
+		@include button;
+	}
+}
