@@ -8,6 +8,15 @@ module.exports = async (phase, { defaultConfig }) => {
 	const nextConfig = {
 		...defaultConfig,
 		reactStrictMode: true,
+		images: {
+			remotePatterns: [
+				{
+					protocol: 'https',
+					hostname: 'prod-files-secure.s3.us-west-2.amazonaws.com',
+					port: '',
+				},
+			],
+		},
 		webpack(config) {
 			// Grab the existing rule that handles SVG imports
 			const fileLoaderRule = config.module.rules.find((rule) =>

@@ -1,0 +1,15 @@
+.gifts {
+	margin: -10px auto;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	list-style: none;
+	width: 90vw;
+	max-width: 1200px;
+}
+
+@media(min-width: 70em) {
+	.gifts {
+		/* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
+	}
+}

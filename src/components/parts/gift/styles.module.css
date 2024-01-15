@@ -1,0 +1,37 @@
+.gift {
+	margin: 10px;
+	padding: 10px;
+	background: $background;
+	display: flex;
+	flex-direction: column;
+
+	&[data-left="0"] {
+		opacity: 0.9;
+		filter: grayscale(1);
+		pointer-events: none;
+	}
+}
+
+.name {
+	font-size: 1.2em;
+	margin: 1em 0;
+	word-wrap: break-word;
+}
+
+.image {
+	width: 100%;
+	height: auto;
+	order: -1;
+}
+
+.button {
+	margin-top: auto;
+	text-align: center;
+	justify-content: center;
+}
+
+@media(min-width: 60em) {
+	.name {
+		font-size: 1.4em;
+	}
+}

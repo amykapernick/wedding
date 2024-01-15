@@ -71,6 +71,12 @@ nav {
 
 button, .btn, input[type="submit"] {
 	@include button;
+
+	&[disabled] {
+		opacity: 0.9;
+		filter: grayscale(1);
+		pointer-events: none;
+	}
 }
 
 a {
