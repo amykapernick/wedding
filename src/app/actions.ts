@@ -76,7 +76,7 @@ export async function submit (guest: string, formData: FormData)
 
 }
 
-export async function updateGift (gift: string, purchased: string)
+export async function updateGift (gift: string, purchased: number)
 {
 	'use server'
 
@@ -88,7 +88,7 @@ export async function updateGift (gift: string, purchased: string)
 		page_id: gift,
 		properties: {
 			Purchased: {
-				number: parseInt(purchased)
+				number: purchased
 			}
 		}
 	})

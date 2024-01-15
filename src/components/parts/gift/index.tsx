@@ -5,8 +5,9 @@ import styles from './styles.module.css'
 import { useState } from 'react'
 import { updateGift } from '@app/actions'
 import { useFormStatus } from 'react-dom'
+import type { NotionGift } from '@ts/gifts'
 
-const Gift = ({ properties, id }) =>
+const Gift = ({ properties, id }: NotionGift) =>
 {
 	const [purchased, setPurchased] = useState(properties['Purchased'].number || 0)
 	const { pending } = useFormStatus()

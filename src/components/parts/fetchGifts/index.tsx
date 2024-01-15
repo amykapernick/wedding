@@ -3,6 +3,7 @@ import Gift from "@components/parts/gift";
 import styles from './styles.module.css'
 import type { User } from "@clerk/nextjs/server";
 import { currentUser } from '@clerk/nextjs';
+import type { NotionGift } from '@ts/gifts'
 
 const FetchData = async () =>
 {
@@ -20,12 +21,12 @@ const FetchData = async () =>
 		]
 	})
 
-	const gifts = data.results
+	const gifts: NotionGift[] = data.results
 
 	return (
 		<>
 			<ul className={styles.gifts}>
-				{gifts.map((gift) => (
+				{gifts.map((gift: NotionGift) => (
 					<Gift key={gift.id} {...gift} />
 				))}
 			</ul>
