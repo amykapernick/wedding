@@ -1,14 +1,14 @@
 import { SignIn, SignedIn, SignedOut } from "@clerk/nextjs";
-import FetchGuest from "@components/parts/fetchGuest";
+import FetchData from "@components/fetchGifts";
 
-export default async function Home ()
-{
+export default async function Registry() {
 
 
 	return (
 		<>
 			<SignedIn>
-				<FetchGuest />
+				<h2>Gift Registry</h2>
+				<FetchData />
 			</SignedIn>
 			<SignedOut>
 				<h2 id="rsvp">RSVP</h2>
