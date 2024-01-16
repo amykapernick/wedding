@@ -1,14 +1,27 @@
+@import '../../../styles/mixins/index';
+
 .gift {
 	margin: 10px;
 	padding: 10px;
 	background: $background;
 	display: flex;
 	flex-direction: column;
+	position: relative;
 
 	&[data-left="0"] {
 		opacity: 0.9;
 		filter: grayscale(1);
 		pointer-events: none;
+	}
+
+	&:has(h2 a:hover) {
+		background: rgba($green, 0.2);
+
+		& h2 a {
+			&:hover {
+				text-decoration: none;
+			}
+		}
 	}
 }
 
@@ -28,6 +41,25 @@
 	margin-top: auto;
 	text-align: center;
 	justify-content: center;
+
+	& button[type="submit"] {
+		margin-top: 0;
+	}
+}
+
+.claimed {
+	@include button;
+	@include button_secondary;
+
+	--button_background: $white;
+
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	justify-content: center;
+	width: auto;
+	margin: 0;
+	font-size: 0.7em;
 }
 
 @media(min-width: 60em) {

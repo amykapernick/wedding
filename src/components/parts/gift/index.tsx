@@ -41,16 +41,17 @@ const Gift = ({ properties, id }: NotionGift) =>
 				height="300"
 				className={styles.image}
 			/>}
-			<form action={claimGift} className={styles.button}>
+			{id && <form action={claimGift} className={styles.button}>
 				<button
 					type="submit"
 					disabled={purchased >= properties['Quantity'].number}
 					aria-disabled={purchased >= properties['Quantity'].number}
 
 				>
-					{purchased >= properties['Quantity'].number ? 'Claimed' : `${ pending ? 'Claiming...' : 'Claim' }`}
+					{purchased >= properties['Quantity'].number ? 'Confirmed' : `${ pending ? 'Confirming...' : 'Claim' }`}
 				</button>
-			</form>
+			</form>}
+			{purchased >= properties['Quantity'].number && <p className={styles.claimed}>Claimed</p>}
 		</li>
 	)
 }
