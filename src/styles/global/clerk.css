@@ -19,6 +19,10 @@
 		}
 	}
 
+	& .cl-main + div:not(.cl-footer) {
+		display: none;
+	}
+
 	& .cl-form {
 		& input, & select, & textarea {
 			@include input;
@@ -32,4 +36,79 @@
 	& .cl-formButtonPrimary {
 		@include button;
 	}
+
+	& .cl-identityPreview {
+		@include button;
+		@include button_secondary;
+	
+		margin: 0 auto;
+		text-transform: none;
+
+		& .cl-avatarBox {
+			display: none;
+		}
+
+		& p {
+			color: inherit;
+		}
+
+		& button {
+			@include button;
+			@include button_text;
+
+			--button_text: inherit;
+
+			&:hover {
+				--button_text: inherit;
+			}
+		}
+	}
+
+	& .cl-main {
+		& p {
+			margin-left: auto;
+			margin-right: auto;
+			color: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+			line-height: inherit;
+		}
+
+		& .cl-formHeaderTitle {
+			@include label;
+			margin: 0 auto;
+		}
+	
+		& .cl-formHeaderSubtitle {
+			font-size: 0.6em;
+		}
+
+		& .cl-otpCodeField  {
+			& input {
+				padding: 0.2em;
+			}
+		}
+
+		& .cl-otpCodeFieldInputs {
+			justify-content: center;
+			width: 100%;
+
+			& span:last-child {
+				width: 0px;
+				overflow: visible;
+				height: 0px;
+				margin: 0;
+			}
+		}
+
+		& .cl-formResendCodeLink {
+			@include button;
+			@include button_text;
+
+			font-size: 0.7em;
+			font-weight: inherit;
+		}
+	}
+
+	
 }

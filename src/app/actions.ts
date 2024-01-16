@@ -5,6 +5,8 @@ import { Person } from '@ts/people';
 
 const notionFields: Record<string, string> = {
 	'age': '{"Age": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
+	'first_name': '{"First Name": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
+	'last_name': '{"Last Name": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
 	'attending': '{"Attending":{"select":{"name": "{{value}}"}}}',
 	'child': '{"Child": {"checkbox": {{value}}}}',
 	'dietary': `{"Dietary Requirements": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}`,
@@ -22,6 +24,8 @@ export async function submit (guest: string, formData: FormData)
 
 	const entries = Object.fromEntries(formData.entries())
 	const updatedData: Record<string, Person | {}> = {}
+
+	console.log({ entries })
 
 	Object.entries(entries).forEach(([key, value]) =>
 	{
@@ -54,7 +58,7 @@ export async function submit (guest: string, formData: FormData)
 		await notion.pages.update({
 			page_id: id,
 			properties: {
-				...properties
+				...properties as any
 			}
 		})
 	})
@@ -66,6 +70,25 @@ export async function submit (guest: string, formData: FormData)
 				status: {
 					name: 'RSVPed'
 				}
+			}
+		}
+	})
+
+}
+
+export async function updateGift (gift: string, purchased: number)
+{
+	'use server'
+
+	const notion = new Client({
+		auth: process.env.NOTION_API_KEY
+	})
+
+	await notion.pages.update({
+		page_id: gift,
+		properties: {
+			Purchased: {
+				number: purchased
 			}
 		}
 	})

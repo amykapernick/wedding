@@ -25,6 +25,13 @@ form {
 			--button_text: $white;
 		}
 	}
+
+	& button[type="submit"], & input[type="submit"] {
+		text-align: center;
+		display: flex;
+		width: auto;
+		margin: 60px auto 0;
+	}
 }
 
 label, legend {

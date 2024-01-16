@@ -1,6 +1,13 @@
+@import '../../../styles/mixins/index';
+
 .form {
 	padding: 0;
 	text-align: left;
+	max-height: 0px;
+	overflow: clip;
+	transition: max-height 0.5s ease-out;
+	max-width: 660px;
+	margin: 0 auto;
 
 	& :global(fieldset) {
 		padding: 0;
@@ -11,8 +18,9 @@
 		line-height: 1;
 	}
 
-	& :global(button[type="submit"]) {
-		margin-top: 20px;
+	&[data-open="true"] {
+		max-height: 10000vh;
+		margin: 60px auto;
 	}
 }
 
@@ -22,19 +30,26 @@
 	margin: 10px 0 20px;
 	text-align: left;
 
-	& > :global(span), & > :global(fieldset) {
+	& > *:not(.long):not(.radio) {
+		width: 45%;		
+	}
+
+	& > :global(*) {
+		width: 100%;
+		margin: 10px;
 		flex-grow: 1;
-		/* width: 45%;
-		margin: 10px; */
 	}
 }
 
 
 .radio {
+	margin: 10px;
+
 	& div {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
+		margin: -10px;
 	}
 
 	& input, & label {
@@ -46,6 +61,8 @@
 		width: calc(100% - 1.5em - 20px);
 		flex-grow: 1;
 		line-height: 2;
+		font-weight: 300;
+		text-transform: none;
 	}
 
 	& input[type="radio"] {
@@ -54,15 +71,15 @@
 		margin-right: 10px;
 	}
 
-	&.short {
-		flex-wrap: nowrap;
-		width: 100%;
-	
-		& label {
-			width: auto;
-			margin-right: 3ch;
-			flex-grow: 0;
-		}
+	& span {
+		@include input;
+
+		display: flex;
+		align-items: center;
+		margin: 10px;
+		flex-grow: 1;
+		width: 45%;
+		min-width: max-content;
 	}
 }
 
@@ -85,5 +102,13 @@
 		border-image: none;
 		background: transparent;
 		font: inherit;
+	}
+}
+
+@media(min-width: 60em) {
+	.person {
+		&:not(:last-of-type) {
+			margin-bottom: 60px;
+		}
 	}
 }

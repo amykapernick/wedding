@@ -23,7 +23,7 @@ export function SubmitButton ({ closeModal }: { closeModal: () => void })
 
 	return (
 		<button type="submit" aria-disabled={pending}>
-			{pending ? 'Submitting...' : 'Submit'}
+			{pending ? 'Submitting...' : 'Send Response'}
 		</button>
 	)
 }
