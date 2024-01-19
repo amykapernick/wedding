@@ -17,7 +17,7 @@ const FetchData = async () =>
 		filter: {
 			property: 'GokD',
 			email: {
-				equals: emailAddresses[0].emailAddress
+				equals: emailAddresses[0].emailAddress.toLowerCase()
 			}
 		}
 	})
