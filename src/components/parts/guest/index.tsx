@@ -2,7 +2,6 @@
 
 import RSVPForm from '@parts/rsvpForm';
 import { useState } from 'react';
-import Dialog from '@parts/dialog'
 import { Guest as GuestType, NotionPerson } from '@ts/people';
 
 import styles from './styles.module.css'
@@ -23,7 +22,7 @@ type GuestProps = {
 
 const Guest = ({ people, guest }: GuestProps) =>
 {
-	const [openSection, toggleSection] = useState(false)
+	const [openSection, setOpenSection] = useState(false)
 	const status = statuses[guest.status]
 	const pastDate = new Date('2024-07-05T00:00:00-04:00') < new Date()
 	const rsvpOpen = openSection || pastDate
@@ -40,13 +39,13 @@ const Guest = ({ people, guest }: GuestProps) =>
 			</p>
 			<button
 				className={styles.button}
-				onClick={() => toggleSection(true)}
+				onClick={() => setOpenSection(true)}
 				aria-disabled={rsvpOpen}
 			>
 				{status === 'invited' ? 'RSVP Now' : 'Update RSVP'}
 			</button>
 			{pastDate && <p>RSVPs have now closed, if you need to update your RSVP please reach out to Dan or Amy.</p>}
-			<RSVPForm people={people} closeModal={() => toggleSection(false)} guest={guest} open={openSection} />
+			<RSVPForm people={people} closeModal={() => setOpenSection(false)} guest={guest} open={openSection} />
 		</section>
 	)
 }

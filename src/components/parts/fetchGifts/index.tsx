@@ -24,13 +24,11 @@ const FetchData = async () =>
 	const gifts: NotionGift[] = data.results
 
 	return (
-		<>
-			<ul className={styles.gifts}>
-				{gifts.map((gift: NotionGift) => (
-					<Gift key={gift.id} {...gift} id={user && gift.id} />
-				))}
-			</ul>
-		</>
+		<ul className={styles.gifts}>
+			{gifts.map((gift: NotionGift) => (
+				<Gift key={gift.id} {...gift} id={user && gift.id} />
+			))}
+		</ul>
 	)
 }
 

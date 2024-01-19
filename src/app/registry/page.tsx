@@ -1,4 +1,3 @@
-import { SignIn, SignedIn, SignedOut } from "@clerk/nextjs";
 import FetchData from "@components/parts/fetchGifts";
 
 export default async function Registry ()

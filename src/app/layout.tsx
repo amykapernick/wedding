@@ -1,5 +1,4 @@
 import { ClerkProvider } from '@clerk/nextjs'
-import type { AppProps } from 'next/app'
 import Header from '@parts/header'
 import Footer from '@parts/footer'
 import '@styles/app.css'
@@ -13,13 +12,13 @@ export const metadata = {
 
 export default function RootLayout ({
 	children,
-}: {
+}: Readonly<{
 	children: React.ReactNode
-})
+}>)
 {
 	return (
 		<ClerkProvider>
-			<html lang="en">
+			<html lang="en-AU">
 				<head>
 					<title>{metadata.title}</title>
 				</head>

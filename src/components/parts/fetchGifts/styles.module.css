@@ -11,9 +11,3 @@
 		display: none;
 	}
 }
-
-@media(min-width: 70em) {
-	.gifts {
-		/* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
-	}
-}

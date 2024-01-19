@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useFormStatus } from 'react-dom'
 
-export function SubmitButton ({ closeModal }: { closeModal: () => void })
+export function SubmitButton ({ closeModal }: Readonly<{ closeModal: () => void }>)
 {
 	const [submitting, setSubmitting] = useState(false)
 	const { pending } = useFormStatus()

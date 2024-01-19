@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import styles from './styles.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { updateGift } from '@app/actions'
 import { useFormStatus } from 'react-dom'
 import type { NotionGift } from '@ts/gifts'
@@ -10,6 +10,7 @@ import type { NotionGift } from '@ts/gifts'
 const Gift = ({ properties, id }: NotionGift) =>
 {
 	const [purchased, setPurchased] = useState(properties['Purchased'].number || 0)
+	const [buttonText, setButtonText] = useState('Claim')
 	const { pending } = useFormStatus()
 	const claimGift = () =>
 	{
@@ -17,6 +18,22 @@ const Gift = ({ properties, id }: NotionGift) =>
 		setPurchased(data)
 		updateGift(id, data)
 	}
+
+	useEffect(() =>
+	{
+		if (purchased >= properties['Quantity'].number)
+		{
+			setButtonText('Confirmed')
+		}
+		else if (pending)
+		{
+			setButtonText('Confirming...')
+		}
+		else
+		{
+			setButtonText('Claim')
+		}
+	}, [purchased, pending])
 
 	return (
 		<li
@@ -48,7 +65,7 @@ const Gift = ({ properties, id }: NotionGift) =>
 					aria-disabled={purchased >= properties['Quantity'].number}
 
 				>
-					{purchased >= properties['Quantity'].number ? 'Confirmed' : `${ pending ? 'Confirming...' : 'Claim' }`}
+					{buttonText}
 				</button>
 			</form>}
 			{purchased >= properties['Quantity'].number && <p className={styles.claimed}>Claimed</p>}
