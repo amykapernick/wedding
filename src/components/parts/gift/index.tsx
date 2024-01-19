@@ -48,7 +48,7 @@ const Gift = ({ properties, id }: NotionGift) =>
 					href={properties['URL'].url}
 					target="_blank"
 				>
-					{properties['Name'].title[0].plain_text}
+					{properties['Name'].title.map(({ plain_text }) => plain_text).join('')}
 				</a>
 			</h2>
 			{properties['Image']?.files?.[0]?.file && <Image
