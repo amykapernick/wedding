@@ -2,6 +2,7 @@
 
 import { Client } from '@notionhq/client';
 import { Person } from '@ts/people';
+import * as Sentry from "@sentry/nextjs";
 
 const notionFields: Record<string, string> = {
 	'age': '{"Age": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
@@ -73,6 +74,20 @@ export async function submit (guest: string, formData: FormData)
 			}
 		}
 	})
+		.then((res) =>
+		{
+			console.log({ res })
+
+			return res
+		})
+		.catch(err =>
+		{
+			console.log({ err })
+
+			Sentry.captureException(err)
+
+			return err
+		})
 
 }
 
@@ -92,5 +107,18 @@ export async function updateGift (gift: string, purchased: number)
 			}
 		}
 	})
+		.then((res) =>
+		{
+			console.log({ res })
 
+			return res
+		})
+		.catch(err =>
+		{
+			console.log({ err })
+
+			Sentry.captureException(err)
+
+			return err
+		})
 }
