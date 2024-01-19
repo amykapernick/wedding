@@ -8,7 +8,7 @@ const mealOptions: MealOptions[] = ['Steak', 'Fish', 'Vegetarian'];
 
 const Adult = (person: AdultType) =>
 {
-	const { id, name, attending, dietary, meal, song } = person
+	const { id, name, attending, dietary, song } = person
 	const [status, setStatus] = useState(attending === 'Yes')
 
 	return (

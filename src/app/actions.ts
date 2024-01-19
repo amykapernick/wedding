@@ -55,7 +55,7 @@ export async function submit (guest: string, formData: FormData)
 
 	})
 
-	Object.entries(updatedData).forEach(async ([id, properties]) =>
+	for (const [id, properties] of Object.entries(updatedData))
 	{
 		await notion.pages.update({
 			page_id: id,
@@ -63,7 +63,8 @@ export async function submit (guest: string, formData: FormData)
 				...properties as any
 			}
 		})
-	})
+
+	}
 
 	await notion.pages.update({
 		page_id: guest,
