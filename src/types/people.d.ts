@@ -10,7 +10,8 @@ export type PersonDefaults = {
 		full: string
 	}
 	attending: 'Yes' | 'No'
-	dietary: string
+	dietary?: string
+	song?: string
 }
 
 export type Adult = PersonDefaults & {
@@ -49,6 +50,14 @@ export type NotionPerson = {
 			}
 		}
 		'Dietary Requirements': {
+			rich_text: {
+				type: 'text'
+				text: {
+					content: string
+				}
+			}[]
+		}
+		Song: {
 			rich_text: {
 				type: 'text'
 				text: {

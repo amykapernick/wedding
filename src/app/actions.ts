@@ -13,6 +13,7 @@ const notionFields: Record<string, string> = {
 	'dietary': `{"Dietary Requirements": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}`,
 	'meal': '{"Meal":{"select":{"name": "{{value}}"}}}',
 	'name': `{"Name": {"title": [{"type": "text","text": {"content": "{{value}}"}}]}}`,
+	'song': '{"Song": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
 }
 
 export async function submit (guest: string, formData: FormData)

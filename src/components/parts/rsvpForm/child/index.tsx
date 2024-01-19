@@ -6,7 +6,7 @@ import styles from '../styles.module.css'
 
 const Child = (person: ChildType) =>
 {
-	const { id, name, attending, dietary, age } = person
+	const { id, name, attending, dietary, age, song } = person
 	const [status, setStatus] = useState(attending === 'Yes')
 
 	return (
@@ -61,8 +61,14 @@ const Child = (person: ChildType) =>
 				<span><label htmlFor={`age_${ id }`}>Age</label>
 					<input type="text" name={`age_${ id }`} id={`age_${ id }`} defaultValue={age} required /></span>
 
-				<span className={styles.long}><label htmlFor={`dietary_${ id }`}>Dietary requirements</label>
+				<span className={styles.long}>
+					<label htmlFor={`dietary_${ id }`}>Dietary requirements</label>
 					<textarea name={`dietary_${ id }`} id={`dietary_${ id }`} defaultValue={dietary}></textarea></span>
+
+				<span>
+					<label htmlFor={`song_${ id }`}>Any songs that would get you on the dancefloor?</label>
+					<textarea name={`song_${ id }`} id={`song_${ id }`} defaultValue={song}></textarea>
+				</span>
 			</>}
 		</div>
 	)

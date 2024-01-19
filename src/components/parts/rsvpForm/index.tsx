@@ -34,7 +34,8 @@ const RSVPForm = ({ people, closeModal, guest, open }: FormTypes) =>
 					meal: properties.Meal?.select?.name,
 					dietary: properties['Dietary Requirements']?.rich_text?.[0]?.text.content,
 					age: parseInt(properties.Age?.rich_text?.[0]?.plain_text),
-					child: properties.Child?.checkbox
+					child: properties.Child?.checkbox,
+					song: properties['Song']?.rich_text?.[0]?.text.content,
 				}
 
 				return (

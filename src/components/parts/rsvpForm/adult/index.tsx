@@ -8,7 +8,7 @@ const mealOptions: MealOptions[] = ['Steak', 'Fish', 'Vegetarian'];
 
 const Adult = (person: AdultType) =>
 {
-	const { id, name, attending, dietary, meal } = person
+	const { id, name, attending, dietary, meal, song } = person
 	const [status, setStatus] = useState(attending === 'Yes')
 
 	return (
@@ -65,6 +65,11 @@ const Adult = (person: AdultType) =>
 					<span className={styles.long}>
 						<label htmlFor={`dietary_${ id }`}>Dietary requirements</label>
 						<textarea name={`dietary_${ id }`} id={`dietary_${ id }`} defaultValue={dietary}></textarea>
+					</span>
+
+					<span>
+						<label htmlFor={`song_${ id }`}>Any songs that would get you on the dancefloor?</label>
+						<textarea name={`song_${ id }`} id={`song_${ id }`} defaultValue={song}></textarea>
 					</span>
 				</>
 			}
