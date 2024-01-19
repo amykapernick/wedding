@@ -22,7 +22,7 @@ const FetchData = async () =>
 			}
 		}
 	})
-	const guest = data.results?.[0] as any as NotionGuest
+	const guest = data.results?.[0] as unknown as NotionGuest
 	const people: any = await notion.databases.query({
 		database_id: process.env.PEOPLE_DB ?? '',
 		filter: {
