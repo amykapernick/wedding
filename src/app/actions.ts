@@ -46,7 +46,7 @@ export async function submit (guest: string, formData: FormData)
 			fieldValue = 'true'
 		}
 
-		const fieldData = notionFields[type].replace('{{value}}', fieldValue)
+		const fieldData = notionFields[type].replace('{{value}}', fieldValue.replace('"', '\\"'))
 
 		updatedData[id] = {
 			...updatedData[id],
