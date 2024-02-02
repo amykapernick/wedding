@@ -48,6 +48,8 @@ export async function submit (guest: string, formData: FormData)
 
 		const fieldData = notionFields[type].replace('{{value}}', fieldValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
 
+		console.log({ fieldData })
+
 		updatedData[id] = {
 			...updatedData[id],
 			...JSON.parse(fieldData)
