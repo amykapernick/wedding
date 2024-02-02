@@ -15,11 +15,11 @@ const Adult = (person: AdultType) =>
 		<div className={styles.person}>
 			<span>
 				<label htmlFor="first_name">First Name</label>
-				<input type="text" name="first_name" id="first_name" defaultValue={name.first} required />
+				<input type="text" name={`firstname_${ id }`} id="first_name" defaultValue={name.first} required />
 			</span>
 			<span>
 				<label htmlFor="last_name">Last Name</label>
-				<input type="text" name="last_name" id="last_name" defaultValue={name.last} required />
+				<input type="text" name={`lastname_${ id }`} id="last_name" defaultValue={name.last} required />
 			</span>
 
 			<fieldset className={styles.radio}>

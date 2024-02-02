@@ -6,8 +6,8 @@ import * as Sentry from "@sentry/nextjs";
 
 const notionFields: Record<string, string> = {
 	'age': '{"Age": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
-	'first_name': '{"First Name": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
-	'last_name': '{"Last Name": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
+	'firstname': '{"First Name": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
+	'lastname': '{"Last Name": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',
 	'attending': '{"Attending":{"select":{"name": "{{value}}"}}}',
 	'child': '{"Child": {"checkbox": {{value}}}}',
 	'dietary': `{"Dietary Requirements": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}`,
