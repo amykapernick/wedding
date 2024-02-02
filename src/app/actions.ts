@@ -46,9 +46,17 @@ export async function submit (guest: string, formData: FormData)
 			fieldValue = 'true'
 		}
 
-		const fieldData = notionFields[type].replace('{{value}}', fieldValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+		const fixedValue = fieldValue
+			.replace(/\\/g, '\\\\') // Replace backslashes with double backslashes
+			.replace(/"/g, '\\"') // Replace double quotes with escaped double quotes
+			.replace(/\n/g, '\\n') // Replace newlines with escaped newlines
+			.replace(/\r/g, '\\r') // Replace carriage returns with escaped carriage returns
+			.replace(/\t/g, '\\t') // Replace tabs with escaped tabs
+			.replace(/[\x00-\x1f]/g, ch => `\\u${ ch.charCodeAt(0).toString(16).padStart(4, '0') }`); // Replace control characters with their escaped unicode representation
 
-		console.log({ fieldData })
+		const fieldData = notionFields[type].replace('{{value}}', fixedValue)
+
+		console.log({ fieldData, fixedValue })
 
 		updatedData[id] = {
 			...updatedData[id],
