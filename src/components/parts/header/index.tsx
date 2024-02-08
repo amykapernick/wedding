@@ -12,6 +12,7 @@ const Header = () =>
 				alt="Daniel and Amy"
 				className={styles.image}
 				placeholder="blur"
+				loading="eager"
 			/>
 			<a className={styles.button} href="/#rsvp">RSVP</a>
 		</header>

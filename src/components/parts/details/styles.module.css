@@ -196,6 +196,10 @@
 			border-right: 1px solid $green;
 		}
 
+		&:nth-of-type(5) {
+			margin-bottom: 4em;
+		}
+
 		&:last-of-type {
 			padding-top: 4em;
 		}

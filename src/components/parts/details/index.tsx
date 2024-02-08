@@ -22,8 +22,6 @@ const Content = ({ data, children }: { data: string, children: any }) =>
 	const pageContent = new Converter().makeHtml(data)
 	const sections = pageContent.replace('{{calendar_links}}', calendarButtons).replace('{{map}}', `<img src=${ Map.src } alt="Linked Map to Location" />`).replaceAll('<a href="', '<a target="_blank" href="').split('<hr />\n')
 
-	console.log({ data })
-
 	return (
 		<>
 			<div className={styles.content}>
