@@ -26,6 +26,7 @@ export async function submit (guest: string, formData: FormData)
 
 	const entries = Object.fromEntries(formData.entries())
 	const updatedData: Record<string, Person | {}> = {}
+	let status: string = 'Declined'
 
 	console.log({ entries })
 
@@ -44,6 +45,11 @@ export async function submit (guest: string, formData: FormData)
 		if (type === 'child')
 		{
 			fieldValue = 'true'
+		}
+
+		if (type === 'attending' && fieldValue === 'Yes')
+		{
+			status = 'RSVPed'
 		}
 
 		const fieldData = notionFields[type].replace('{{value}}', fieldValue)
@@ -71,7 +77,7 @@ export async function submit (guest: string, formData: FormData)
 		properties: {
 			Status: {
 				status: {
-					name: 'RSVPed'
+					name: status
 				}
 			}
 		}

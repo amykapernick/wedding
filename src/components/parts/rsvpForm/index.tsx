@@ -20,6 +20,7 @@ const RSVPForm = ({ people, closeModal, guest, open }: FormTypes) =>
 	const handleSubmit = submit.bind(null, guest.id)
 
 	return (
+
 		<form action={handleSubmit} className={styles.form} data-open={open}>
 			{people.toSorted((a, b) => Number(a.properties.Child.checkbox) - Number(b.properties.Child.checkbox)).map(({ id, properties }) =>
 			{

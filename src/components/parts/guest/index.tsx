@@ -24,7 +24,7 @@ const Guest = ({ people, guest }: GuestProps) =>
 {
 	const [openSection, setOpenSection] = useState(false)
 	const status = statuses[guest.status]
-	const pastDate = new Date('2024-07-05T00:00:00-04:00') < new Date()
+	const pastDate = new Date('2024-08-05') <= new Date()
 	const rsvpOpen = openSection || pastDate
 
 	return (
@@ -37,6 +37,7 @@ const Guest = ({ people, guest }: GuestProps) =>
 				{status === 'rsvp' && `We're so excited to have you join us`}
 				{status === 'declined' && `Sorry you can't make it, we'll miss you!`}
 			</p>
+			{pastDate && <p>RSVPs have now closed, if you need to update your RSVP please reach out to Dan or Amy.</p>}
 			<button
 				className={styles.button}
 				onClick={() => setOpenSection(true)}
@@ -44,7 +45,6 @@ const Guest = ({ people, guest }: GuestProps) =>
 			>
 				{status === 'invited' ? 'RSVP Now' : 'Update RSVP'}
 			</button>
-			{pastDate && <p>RSVPs have now closed, if you need to update your RSVP please reach out to Dan or Amy.</p>}
 			<RSVPForm people={people} closeModal={() => setOpenSection(false)} guest={guest} open={openSection} />
 		</section>
 	)
