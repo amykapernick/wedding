@@ -36,7 +36,7 @@
 		"stylelint-use-nesting": "^4.1.0"
 	},
 	"dependencies": {
-		"@clerk/nextjs": "^4.29.3",
+		"@clerk/nextjs": "^4.29.4",
 		"@sentry/nextjs": "^7.93.0",
 		"calendar-link": "^2.6.0",
 		"next": "^14.0.4",
