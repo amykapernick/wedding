@@ -37,14 +37,15 @@
 	},
 	"dependencies": {
 		"@clerk/nextjs": "^4.29.3",
-		"@sentry/nextjs": "^7.93.0",
+		"@sentry/nextjs": "^7.94.1",
 		"calendar-link": "^2.6.0",
+		"fathom-client": "^3.6.0",
 		"next": "^14.1.0",
 		"notion-to-md": "^3.1.1",
 		"postcss-loader": "^7.3.4",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"react-router-dom": "^6.21.2",
+		"react-router-dom": "^6.21.3",
 		"showdown": "^2.1.0"
 	}
 }
