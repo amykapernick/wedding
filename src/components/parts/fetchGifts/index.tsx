@@ -4,6 +4,7 @@ import styles from './styles.module.css'
 import type { User } from "@clerk/nextjs/server";
 import { currentUser } from '@clerk/nextjs';
 import type { NotionGift } from '@ts/gifts'
+import { TrackEvent } from '../fathom';
 
 const FetchData = async () =>
 {
@@ -24,11 +25,14 @@ const FetchData = async () =>
 	const gifts: NotionGift[] = data.results
 
 	return (
-		<ul className={styles.gifts}>
-			{gifts.map((gift: NotionGift) => (
-				<Gift key={gift.id} {...gift} id={user && gift.id} />
-			))}
-		</ul>
+		<>
+			{user && <TrackEvent name="Signed In" />}
+			<ul className={styles.gifts}>
+				{gifts.map((gift: NotionGift) => (
+					<Gift key={gift.id} {...gift} id={user && gift.id} />
+				))}
+			</ul>
+		</>
 	)
 }
 

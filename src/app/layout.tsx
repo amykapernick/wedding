@@ -1,9 +1,8 @@
 import { ClerkProvider } from '@clerk/nextjs'
 import Header from '@parts/header'
 import Footer from '@parts/footer'
+import Fathom from '@parts/fathom'
 import '@styles/app.css'
-
-
 
 export const metadata = {
 	title: `Daniel & Amy's Wedding`,
@@ -21,12 +20,12 @@ export default function RootLayout ({
 			<html lang="en-AU">
 				<head>
 					<title>{metadata.title}</title>
-					<script src="https://cdn.usefathom.com/script.js" data-site={process.env.NEXT_PUBLIC_FATHOM_SITE} defer></script>
 				</head>
 				<body>
 					<Header />
 					{children}
 					<Footer />
+					<Fathom />
 				</body>
 			</html>
 		</ClerkProvider>

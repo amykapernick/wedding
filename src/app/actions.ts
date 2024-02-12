@@ -3,6 +3,7 @@
 import { Client } from '@notionhq/client';
 import { Person } from '@ts/people';
 import * as Sentry from "@sentry/nextjs";
+import { trackEvent } from 'fathom-client';
 
 const notionFields: Record<string, string> = {
 	'age': '{"Age": {"rich_text": [{"type": "text", "text": {"content": "{{value}}"}}]}}',

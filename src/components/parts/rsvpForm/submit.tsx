@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useFormStatus } from 'react-dom'
+import { TrackEvent } from '@parts/fathom'
 
 export function SubmitButton ({ closeModal }: Readonly<{ closeModal: () => void }>)
 {
@@ -22,8 +23,11 @@ export function SubmitButton ({ closeModal }: Readonly<{ closeModal: () => void 
 	}, [pending])
 
 	return (
-		<button type="submit" aria-disabled={pending}>
-			{pending ? 'Submitting...' : 'Send Response'}
-		</button>
+		<>
+			{pending && <TrackEvent name="RSVP Form Submitted" />}
+			<button type="submit" aria-disabled={pending}>
+				{pending ? 'Submitting...' : 'Send Response'}
+			</button>
+		</>
 	)
 }

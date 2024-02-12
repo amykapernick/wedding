@@ -1,4 +1,4 @@
-import { SignIn, SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignIn, SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import FetchGuest from "@components/parts/fetchGuest";
 
 export default async function Home ()
@@ -9,6 +9,9 @@ export default async function Home ()
 		<>
 			<SignedIn>
 				<FetchGuest />
+				<span className="signout">
+					<SignOutButton>Log Out</SignOutButton>
+				</span>
 			</SignedIn>
 			<SignedOut>
 				<h2 id="rsvp">RSVP</h2>
