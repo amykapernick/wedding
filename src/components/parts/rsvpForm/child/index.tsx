@@ -59,7 +59,7 @@ const Child = (person: ChildType) =>
 			{status && <>
 				<input type="hidden" name={`child_${ id }`} value="true" />
 				<span><label htmlFor={`age_${ id }`}>Age</label>
-					<input type="text" name={`age_${ id }`} id={`age_${ id }`} defaultValue={age} required /></span>
+					<input type="text" name={`age_${ id }`} id={`age_${ id }`} defaultValue={age || ""} required /></span>
 
 				<span className={styles.long}>
 					<label htmlFor={`dietary_${ id }`}>Dietary requirements</label>
