@@ -13,8 +13,8 @@ const TrackPageView = () =>
 
 	useEffect(() =>
 	{
-		load(process.env.NEXT_PUBLIC_FATHOM_SITE, {
-			includedDomains: [process.env.URL]
+		load(process.env.NEXT_PUBLIC_FATHOM_SITE ?? "", {
+			includedDomains: [process.env.URL ?? ""]
 		})
 	}, [])
 
@@ -30,8 +30,8 @@ export const TrackEvent = ({ name }: { name: EventTypes }) =>
 {
 	useEffect(() =>
 	{
-		load(process.env.NEXT_PUBLIC_FATHOM_SITE, {
-			includedDomains: [process.env.URL]
+		load(process.env.NEXT_PUBLIC_FATHOM_SITE ?? "", {
+			includedDomains: [process.env.URL ?? ""]
 		})
 	}, [])
 
