@@ -1,7 +1,13 @@
 import { SignOutButton } from "@clerk/nextjs";
 import FetchData from "@components/parts/fetchRunsheet";
 
-export default async function Runsheet (props)
+type VendorRunsheetProps = {
+	params: {
+		vendor: string
+	}
+}
+
+export default async function Runsheet (props: VendorRunsheetProps)
 {
 	const { vendor } = props.params
 

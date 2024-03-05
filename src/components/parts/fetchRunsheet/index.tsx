@@ -2,10 +2,13 @@ import { Client } from '@notionhq/client'
 import { currentUser } from '@clerk/nextjs';
 import type { User } from "@clerk/nextjs/server";
 import { TrackEvent } from "@parts/fathom";
-import { NotionRunsheetEvent } from '@ts/runsheet';
 import VendorRunsheets from '@parts/vendorRunsheet';
 
-const FetchData = async (props) =>
+type FetchVendorRunsheetProps = {
+	vendor: string
+}
+
+const FetchData = async (props: FetchVendorRunsheetProps) =>
 {
 	const { emailAddresses } = await currentUser() as User;
 	const notion = new Client({
@@ -36,7 +39,7 @@ const FetchData = async (props) =>
 		<>
 			{emailAddresses[0].emailAddress.toLowerCase() && <TrackEvent name="Signed In" />}
 			<VendorRunsheets
-				runsheetEvents={runsheetEvents?.results as any as NotionRunsheetEvent[]}
+				runsheetEvents={runsheetEvents?.results}
 				vendor={props.vendor?.replaceAll('_', ' ')}
 			/>
 		</>

@@ -1,4 +1,4 @@
-import { NotionRunsheetEvent, RunsheetEvent, NotionStakeholder, VendorRunsheetEvent } from "@ts/runsheet"
+import { NotionRunsheetEvent, VendorRunsheetEvent } from "@ts/runsheet"
 import Runsheet from "@parts/runsheet"
 import { parseISO } from "date-fns"
 
