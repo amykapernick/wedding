@@ -3,6 +3,8 @@ import styles from './styles.module.css'
 import { format } from "date-fns"
 import Calendar from '@img/icons/calendar.svg'
 import { ics } from "calendar-link"
+import FrameTop from '@img/frame_top.png'
+import Image from 'next/image'
 
 type RunsheetProps = {
 	stakeholder: Stakeholder
@@ -37,6 +39,7 @@ const Runsheet = (props: RunsheetProps) =>
 
 				return (
 					<section key={day} data-page={newPage}>
+						<Image src={FrameTop} alt="" className="print-only frame" />
 						<span className={styles.person_name}>{stakeholder.name}</span>
 						<h4 className={styles.day}>{day}</h4>
 						<table className={styles.timetable}>

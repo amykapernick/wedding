@@ -1,31 +1,64 @@
 @page {
 	size: A5;
-  }
+	margin: 0;
+}
 
-body > *:not(article[class*="runsheet"]) {
-	display: none;
+body {
+	--page_margins: 50px;
+
+	& > *:not(article[class*="runsheet"]) {
+		display: none;
+	}
+
+	& .print-only {
+		display: block;
+	}
 }
 
 article[class*="runsheet"] {
 	font-size: 12px;
+	page-break-before: always;
 
 	& h3 {
 		margin-top: 0;
-		page-break-before: always;
 		display: none;
 	}
 
 	& section {
 		page-break-inside: avoid;
+		position: relative;
+		overflow: hidden;
+		padding: 0 var(--page_margins);
 
 		&:first-of-type, &[data-page="true"] {
+			padding-top: var(--page_margins);
+			page-break-before: always;
+
 			& span[class*="person_name"] {
 				display: block;
 			}
+
+			& .frame {
+				display: block;
+			}
+		}
+
+		&:has(+ section[data-page="true"]) {
+			padding-bottom: var(--page_margins);
 		}
 	}
 
 	& .no-print {
 		display: none;
 	} 
+
+	& .frame {
+		display: none;
+		height: auto;
+		position: absolute;
+		top: -130px;
+		right: -100px;
+		width: 400px;
+		transform: scaleY(-1);
+	}
 }
