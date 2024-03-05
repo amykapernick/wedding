@@ -1,6 +1,6 @@
 import { RunsheetEvent, Stakeholder } from "@ts/runsheet"
 import styles from './styles.module.css'
-import { format } from "date-fns-tz"
+import { format, add } from "date-fns"
 import Calendar from '@img/icons/calendar.svg'
 import { ics } from "calendar-link"
 import FrameTop from '@img/frame_top.png'
@@ -58,8 +58,8 @@ const Runsheet = (props: RunsheetProps) =>
 							<tbody>
 								{events.map((event: RunsheetEvent) => (
 									<tr key={event.name}>
-										<td>{format(event.start, 'h:mm aaa', { timeZone: 'Australia/Perth' })}</td>
-										<td>{event?.end && format(event.end, 'hh:mm aaa', { timeZone: 'Australia/Perth' })}</td>
+										<td>{format(add(event.start, { hours: 8 }), 'h:mm aaa')}</td>
+										<td>{event?.end && format(add(event.end, { hours: 8 }), 'hh:mm aaa')}</td>
 										<td>{event.name}</td>
 										<td><small>{event?.notes}</small></td>
 										<td className="no-print">
