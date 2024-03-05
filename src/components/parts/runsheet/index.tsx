@@ -20,7 +20,11 @@ const Runsheet = (props: RunsheetProps) =>
 	{
 		const day = format(add(event.start, { hours: 8 }), 'EEEE, dd MMM')
 		if (!days[day]) days[day] = []
-		days[day].push(event)
+		days[day].push({
+			...event,
+			start: add(event.start, { hours: 8 }),
+			end: event.end ? add(event.end, { hours: 8 }) : null
+		})
 	})
 
 	return (
@@ -58,8 +62,8 @@ const Runsheet = (props: RunsheetProps) =>
 							<tbody>
 								{events.map((event: RunsheetEvent) => (
 									<tr key={event.name}>
-										<td>{format(add(event.start, { hours: 8 }), 'h:mm aaa')}</td>
-										<td>{event?.end && format(add(event.end, { hours: 8 }), 'hh:mm aaa')}</td>
+										<td>{format(event.start, 'h:mm aaa')}</td>
+										<td>{event?.end && format(event.end, 'hh:mm aaa')}</td>
 										<td>{event.name}</td>
 										<td><small>{event?.notes}</small></td>
 										<td className="no-print">
