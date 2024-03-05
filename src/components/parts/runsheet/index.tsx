@@ -18,7 +18,7 @@ const Runsheet = (props: RunsheetProps) =>
 
 	stakeholder.events.forEach(event =>
 	{
-		const day = format(event.start, 'EEEE, dd MMM')
+		const day = format(add(event.start, { hours: 8 }), 'EEEE, dd MMM')
 		if (!days[day]) days[day] = []
 		days[day].push(event)
 	})
