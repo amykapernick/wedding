@@ -3,7 +3,7 @@ import FrameTop from '@img/frame_top.png'
 import Image from 'next/image'
 import Monogram from '@img/monogram.svg'
 import Map from '@img/map.png'
-import { ics, CalendarEvent } from 'calendar-link'
+import { ics, CalendarEvent, google } from 'calendar-link'
 
 import styles from './styles.module.css'
 
@@ -17,7 +17,7 @@ const Content = ({ data, children }: { data: string, children: any }) =>
 		location: process.env.NEXT_PUBLIC_EVENT_LOCATION as string,
 	}
 
-	const calendarButtons = `<span class=${ styles.buttons }><a filename="event.ics" download href="${ ics(event) }" target="_blank">Add to Calendar</a></span>`
+	const calendarButtons = `<span class=${ styles.buttons }><a filename="event.ics" download href="${ ics(event) }" target="_blank">Add to Calendar</a></span><span class=${ styles.buttons }><a filename="event.ics" download href="${ google(event) }" target="_blank">Google Calendar</a></span>`
 
 	const pageContent = new Converter().makeHtml(data)
 	const sections = pageContent.replace('{{calendar_links}}', calendarButtons).replace('{{map}}', `<img src=${ Map.src } alt="Linked Map to Location" />`).replaceAll('<a href="', '<a target="_blank" href="').split('<hr />\n')

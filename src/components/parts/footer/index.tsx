@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import FooterImage from '@img/footer_image.jpg'
 import styles from './styles.module.css'
-// import FrameBottom from '@img/frame_bottom.svg'
 import FrameBottom from '@img/frame_bottom.png'
 
 const Footer = () =>

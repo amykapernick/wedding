@@ -1,0 +1,55 @@
+.runsheet {
+	max-width: 800px;
+	margin: 0 auto;
+	text-transform: none;
+}
+
+.person, .person_name {
+	text-align: left;
+	font-family: $font_script;
+	font-size: 4em;
+	color: $green;
+	line-height: 1;
+	margin-bottom: -0.5em;
+	font-weight: 600;
+}
+
+.person_name {
+	display: none;
+}
+
+.calendar {
+	display: block;
+	text-align: center;
+
+	& svg {
+		height: 1.2em;
+		width: auto;
+	}
+}
+
+.day {
+	font-size: 2em;
+	margin-bottom: 0.5em;
+}
+
+.timetable {
+	text-align: left;
+	width: 100%;
+
+	& thead {
+		font-family: $font_headings;
+		background: $green;
+		color: $white;
+	}
+
+	& td, & th {
+		padding: 0.7em;
+	}
+
+	& tr {
+		&:nth-child(2n) {
+			background: $green_light;
+		} 
+	}
+}
