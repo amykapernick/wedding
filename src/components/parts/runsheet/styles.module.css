@@ -41,15 +41,21 @@
 		font-family: $font_headings;
 		background: $green;
 		color: $white;
+
+		& :global(.spacing) {
+			display: none;
+		}
 	}
 
 	& td, & th {
 		padding: 0.7em;
 	}
 
-	& tr {
-		&:nth-child(2n) {
-			background: $green_light;
-		} 
+	& tbody {
+		& tr {
+			&:nth-child(2n) {
+				background: $green_light;
+			} 
+		}
 	}
 }

@@ -1,6 +1,6 @@
 @page {
 	size: A5;
-	margin: 0;
+	margin: 0 0 50px 0;
 }
 
 body {
@@ -36,6 +36,7 @@ article[class*="runsheet"] {
 
 			& span[class*="person_name"] {
 				display: block;
+				margin-bottom: 0;
 			}
 
 			& .frame {
@@ -43,8 +44,20 @@ article[class*="runsheet"] {
 			}
 		}
 
-		&:has(+ section[data-page="true"]) {
-			padding-bottom: var(--page_margins);
+		& h4 {
+			margin-bottom: calc(-50px + 0.5em);
+		}
+
+		& thead {
+			& .spacing {
+				height: 50px;
+				background: $white;
+				display: block;
+				
+				& th {
+					padding: 0;
+				}
+			}
 		}
 	}
 

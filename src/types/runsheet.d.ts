@@ -34,6 +34,11 @@ export type NotionRunsheetEvent = {
 				plain_text: string
 			}[]
 		}
+		'Vendor Slugs': {
+			formula: {
+				string: string
+			}
+		}
 	}
 }
 
@@ -43,6 +48,10 @@ export type RunsheetEvent = {
 	start: Date;
 	end: Date | null;
 	notes: string;
+}
+
+export type VendorRunsheetEvent = RunsheetEvent & {
+	vendors: string[]
 }
 
 export type NotionStakeholder = {

@@ -14,8 +14,6 @@ const GuestRunsheets = (props: GuestRunsheetsProps) =>
 
 	runsheetEvents.forEach(event =>
 	{
-		console.log({ ...event })
-
 		events[event.id] = {
 			name: event.properties.Name.title[0].plain_text,
 			tags: event.properties.Tags.multi_select.map(tag => tag.name),

@@ -44,6 +44,9 @@ const Runsheet = (props: RunsheetProps) =>
 						<h4 className={styles.day}>{day}</h4>
 						<table className={styles.timetable}>
 							<thead>
+								<tr className="spacing">
+									<th colspan="5"></th>
+								</tr>
 								<tr>
 									<th>Start</th>
 									<th>End</th>
