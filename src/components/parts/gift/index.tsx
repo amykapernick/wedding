@@ -8,6 +8,7 @@ import { useFormStatus } from 'react-dom'
 import type { NotionGift } from '@ts/gifts'
 import { TrackEvent } from '@parts/fathom'
 import { trackEvent } from 'fathom-client'
+import Link from '@img/icons/link.svg'
 
 const Gift = ({ properties, id }: NotionGift) =>
 {
@@ -54,6 +55,7 @@ const Gift = ({ properties, id }: NotionGift) =>
 						href={properties['URL'].url}
 						target="_blank"
 					>
+						{properties['URL']?.url && <Link />}
 						{properties['Name'].title.map(({ plain_text }) => plain_text).join('')}
 					</a>
 				</h2>
