@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 import type { User } from "@clerk/nextjs/server";
 import { currentUser } from '@clerk/nextjs';
 import type { NotionGift } from '@ts/gifts'
-import { TrackEvent } from '../fathom';
+import { TrackEvent } from '@parts/fathom';
 
 const FetchData = async () =>
 {

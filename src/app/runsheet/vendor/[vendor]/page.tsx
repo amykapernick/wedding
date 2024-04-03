@@ -1,5 +1,6 @@
 import { SignOutButton } from "@clerk/nextjs";
-import FetchData from "@components/parts/fetchRunsheet";
+import FetchData from "@components/parts/fetchData/runsheet";
+import PrintButton from "@components/parts/printButton";
 
 type VendorRunsheetProps = {
 	params: {
@@ -15,6 +16,7 @@ export default async function Runsheet (props: Readonly<VendorRunsheetProps>)
 		<>
 			<h2 id="runsheet">Runsheets</h2>
 			<p>You can print these off for easy reference.</p>
+			<PrintButton>Print Runsheet</PrintButton>
 			<FetchData vendor={vendor} />
 			<span className="signout">
 				<SignOutButton>Log Out</SignOutButton>

@@ -3,7 +3,7 @@ import { currentUser } from '@clerk/nextjs';
 import type { NotionGuest } from "@ts/people";
 import type { User } from "@clerk/nextjs/server";
 import { TrackEvent } from "@parts/fathom";
-import GuestRunsheets from "@parts/guestRunsheets";
+import GuestRunsheets from "@components/parts/runsheets/guest";
 import { NotionStakeholder } from '@ts/runsheet';
 
 type FetchGuestRunsheetProps = {

@@ -1,5 +1,5 @@
 import { NotionRunsheetEvent, RunsheetEvent, NotionStakeholder } from "@ts/runsheet"
-import Runsheet from "@parts/runsheet"
+import Runsheet from "@parts/runsheets/runsheet"
 import { parseISO } from "date-fns"
 
 type GuestRunsheetsProps = {

@@ -2,7 +2,7 @@ import { Client } from '@notionhq/client'
 import { currentUser } from '@clerk/nextjs';
 import type { User } from "@clerk/nextjs/server";
 import { TrackEvent } from "@parts/fathom";
-import VendorRunsheets from '@parts/vendorRunsheet';
+import VendorRunsheets from '@components/parts/runsheets/vendor';
 
 type FetchVendorRunsheetProps = {
 	vendor: string
