@@ -1,5 +1,5 @@
 import { SignOutButton, SignedIn } from "@clerk/nextjs";
-import FetchData from "@components/parts/fetchGifts";
+import FetchData from "@components/parts/fetchData/gifts";
 
 export default async function Registry ()
 {
