@@ -3,8 +3,6 @@ import FetchData from "@components/parts/fetchData/gifts";
 
 export default async function Registry ()
 {
-
-
 	return (
 		<>
 			<h2>Gift Registry</h2>
@@ -16,4 +14,4 @@ export default async function Registry ()
 			</SignedIn>
 		</>
 	)
-}
+}   
