@@ -2,7 +2,7 @@
 
 import RSVPForm from '@parts/rsvpForm';
 import { useState } from 'react';
-import { Guest as GuestType, NotionPerson } from '@ts/people';
+import { GuestStatus, Guest as GuestType, NotionPerson } from '@ts/people';
 
 import styles from './styles.module.css'
 

@@ -8,6 +8,15 @@ import { TrackEvent } from "@parts/fathom";
 
 const { NotionToMarkdown } = require("notion-to-md");
 
+const statuses = {
+	'RSVPed': 'rsvp',
+	'Invited': 'invited',
+	'Invitation': 'invited',
+	'Not Invited': 'invited',
+	'Save the Date': 'invited',
+	'Declined': 'declined'
+}
+
 const FetchData = async () =>
 {
 	const { emailAddresses } = await currentUser() as User;
@@ -41,7 +50,10 @@ const FetchData = async () =>
 	return (
 		<>
 			{emailAddresses[0].emailAddress.toLowerCase() && <TrackEvent name="Signed In" />}
-			<Content data={n2m.toMarkdownString(pageData)?.parent}>
+			<Content
+				data={n2m.toMarkdownString(pageData)?.parent}
+				guestStatus={statuses[guest.properties.Status.status.name]}
+			>
 				<Guest
 					people={people?.results as NotionPerson[]}
 					guest={{

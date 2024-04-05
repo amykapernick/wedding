@@ -42,7 +42,7 @@
 		padding: 0;
 	}
 
-	&:nth-of-type(2) {
+	&[data-section="2"] {
 		margin-top: 2em;
 		padding-top: 0;
 	}
@@ -74,7 +74,7 @@
 		}
 	}
 
-	&:nth-of-type(3), &:nth-of-type(4) {
+	&[data-section="3"], &[data-section="4"] {
 		& :global(p a:first-child:last-child) {
 			@include button;
 			@include button_secondary;
@@ -90,6 +90,7 @@
 	top: 0;
 	left: 50%;
 	margin-left: 170px;
+	pointer-events: none;
 }
 
 .monogram {
@@ -102,13 +103,18 @@
 	margin: 0 auto 30px;
 }
 
+.rsvp {
+	width: 100%;
+	margin-bottom: 3em;
+}
+
 @media(min-width: 40em) {
 	.buttons {
 		justify-content: flex-start;
 	}
 
 	.section {
-		&:nth-of-type(2) {
+		&[data-section="2"] {
 			padding-left: 45%;
 			text-align: left;
 			padding-bottom: 0;
@@ -172,7 +178,7 @@
 	.section {
 		flex: 1 1 100%;
 
-		&:nth-of-type(2) {
+		&[data-section="2"] {
 			padding-left: 50%;
 			margin-top: 100px;
 			
@@ -182,7 +188,7 @@
 			}
 		}
 
-		&:nth-of-type(3), &:nth-of-type(4) {
+		&[data-section="3"], &[data-section="4"] {
 			flex-basis: 45%;
 			padding-top: 0.1px;
 			padding-bottom: 0.1px;
@@ -192,11 +198,11 @@
 			padding-right: 20px;
 		}
 
-		&:nth-of-type(3) {
+		&[data-section="3"] {
 			border-right: 1px solid $green;
 		}
 
-		&:nth-of-type(5) {
+		&[data-section="5"] {
 			margin-bottom: 4em;
 		}
 
@@ -215,8 +221,12 @@
 		width: 1300px;
 	}
 
+	.rsvp {
+		margin-bottom: 100px;
+	}
+
 	.section {
-		&:nth-of-type(3), &:nth-of-type(4) {
+		&[data-section="3"], &[data-section="4"] {
 			margin-top: 300px;
 			margin-bottom: 200px;
 
@@ -245,7 +255,7 @@
 
 @media(min-width: 70em) {
 	.section {
-		&:nth-of-type(2) {
+		&[data-section="2"] {
 			padding-left: 500px;
 			
 			& :global(a:has(img:first-child:last-child)) {
@@ -263,7 +273,7 @@
 	} 
 
 	.section {
-		&:nth-of-type(2) {
+		&[data-section="2"] {
 			max-width: unset;
 			padding-right: calc(50vw - 500px);
 			padding-left: 50vw;

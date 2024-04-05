@@ -1,4 +1,4 @@
-export type GuestStatus = 'RSVPed' | 'Invited' | 'Not Invited' | 'Save the Date' | 'Declined'
+export type GuestStatus = 'RSVPed' | 'Invitation' | 'Invited' | 'Not Invited' | 'Save the Date' | 'Declined'
 
 export type MealOptions = 'Vegetarian' | 'Fish' | 'Steak'
 
