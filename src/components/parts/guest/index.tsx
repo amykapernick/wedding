@@ -9,6 +9,7 @@ import styles from './styles.module.css'
 const statuses = {
 	'RSVPed': 'rsvp',
 	'Invited': 'invited',
+	'Invitation': 'invited',
 	'Not Invited': 'invited',
 	'Save the Date': 'invited',
 	'Declined': 'declined'
