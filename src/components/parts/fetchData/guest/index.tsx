@@ -33,6 +33,12 @@ const FetchData = async () =>
 		}
 	})
 	const guest = data.results?.[0] as unknown as NotionGuest
+
+	console.log({
+		emailAddresses,
+		data
+	})
+
 	const people: any = await notion.databases.query({
 		database_id: process.env.PEOPLE_DB ?? '',
 		filter: {
