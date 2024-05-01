@@ -23,6 +23,7 @@ const FetchData = async () =>
 	const notion = new Client({
 		auth: process.env.NOTION_API_KEY
 	})
+	// TODO: Add error logging for sentry when fetches don't work
 	const data = await notion.databases.query({
 		database_id: process.env.GUEST_DB ?? '',
 		filter: {
@@ -34,6 +35,7 @@ const FetchData = async () =>
 	})
 	const guest = data.results?.[0] as unknown as NotionGuest
 
+	// TODO: Add nice error handling if the guest isn't found
 	console.log({
 		emailAddresses,
 		data

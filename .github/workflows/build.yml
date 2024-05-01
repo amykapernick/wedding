@@ -18,3 +18,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  todos:
+    name: Todos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Add Issues from Comments
+        uses: "alstr/todo-to-issue-action@v4"
+        with:
+          AUTO_ASSIGN: true
+          CLOSE_ISSUES: true
