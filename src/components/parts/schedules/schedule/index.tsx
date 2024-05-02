@@ -2,7 +2,7 @@
 
 import { NotionRunsheetEvent, RunsheetEvent, NotionStakeholder } from "@ts/runsheet"
 import { parseISO } from "date-fns"
-import { ChannelBox, ChannelLogo, Epg, Layout, useEpg } from "planby"
+import { Channel, ChannelBox, ChannelLogo, Epg, Layout, Program, useEpg } from "planby"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import theme from './theme'
 import ProgramItem from "./programItem"
@@ -18,8 +18,8 @@ type ScheduleProps = {
 const Schedule = (props: ScheduleProps) =>
 {
 	const { start, end } = props
-	const [channels, setChannels] = useState([]);
-	const [epg, setEpg] = useState([]);
+	const [channels, setChannels] = useState<Channel[]>([]);
+	const [epg, setEpg] = useState<Program[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const height = 200
 
@@ -40,16 +40,15 @@ const Schedule = (props: ScheduleProps) =>
 		endDate: end,
 		isBaseTimeFormat: true,
 		theme: theme,
-		overlap: 'stack'
 	})
 
 	const handleFetchResources = useCallback(async () =>
 	{
 		setIsLoading(true);
-		const programs = []
-		const channels = props.people.map(({ uuid, title, events }) =>
+		const programs: Program[] = []
+		const channels: Channel[] = props.people.map(({ uuid, title, events }) =>
 		{
-			events.forEach((event) =>
+			events.forEach((event: any) =>
 			{
 				programs.push({
 					channelUuid: uuid,
@@ -57,13 +56,13 @@ const Schedule = (props: ScheduleProps) =>
 					till: event.end,
 					title: event.name,
 					description: event.notes
-				})
+				} as Program)
 			})
 
 			return ({
 				uuid,
 				title
-			})
+			} as any as Channel)
 		})
 
 		console.log({ programs })
