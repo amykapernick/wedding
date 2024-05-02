@@ -10,7 +10,7 @@ type FetchVendorRunsheetProps = {
 
 const FetchData = async (props: FetchVendorRunsheetProps) =>
 {
-	const { emailAddresses } = await currentUser() as User;
+	const user = await currentUser() as User;
 	const notion = new Client({
 		auth: process.env.NOTION_API_KEY
 	})
@@ -33,11 +33,9 @@ const FetchData = async (props: FetchVendorRunsheetProps) =>
 		filter
 	})
 
-	console.log({ ...runsheetEvents })
-
 	return (
 		<>
-			{emailAddresses[0].emailAddress.toLowerCase() && <TrackEvent name="Signed In" />}
+			{user?.emailAddresses[0].emailAddress.toLowerCase() && <TrackEvent name="Signed In" />}
 			<VendorRunsheets
 				runsheetEvents={runsheetEvents?.results}
 				vendor={props.vendor?.replaceAll('_', ' ')}

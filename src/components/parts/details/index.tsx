@@ -7,7 +7,7 @@ import { ics, CalendarEvent, google } from 'calendar-link'
 
 import styles from './styles.module.css'
 
-const Content = ({ data, children, guestStatus }: { data: string, children: any, guestStatus: string }) =>
+const Content = ({ data, children, guestStatus }: { data: string, children: any, guestStatus?: string }) =>
 {
 	const event: CalendarEvent = {
 		title: process.env.NEXT_PUBLIC_EVENT_TITLE as string,
@@ -27,9 +27,13 @@ const Content = ({ data, children, guestStatus }: { data: string, children: any,
 			<div className={styles.content}>
 				<Image src={FrameTop} alt="" className={styles.frame} />
 				<Monogram className={styles.monogram} />
-				{guestStatus === 'invited' && <section className={styles.rsvp}>
-					{children}
-				</section>}
+				{guestStatus && <>
+					{guestStatus === 'invited' &&
+						<section className={styles.rsvp}>
+							{children}
+						</section>
+					}
+				</>}
 				{sections.map((section, i) => (
 					<section key={section} data-section={i + 1} className={styles.section} dangerouslySetInnerHTML={{ __html: section }} />
 				))}

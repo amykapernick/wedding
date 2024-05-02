@@ -5,6 +5,7 @@ import type { NotionPerson, NotionGuest } from "@ts/people";
 import type { User } from "@clerk/nextjs/server";
 import Content from '@parts/details';
 import { TrackEvent } from "@parts/fathom";
+import { captureException } from "@sentry/nextjs";
 
 const { NotionToMarkdown } = require("notion-to-md");
 
@@ -23,7 +24,7 @@ const FetchData = async () =>
 	const notion = new Client({
 		auth: process.env.NOTION_API_KEY
 	})
-	// TODO: Add error logging for sentry when fetches don't work
+
 	const data = await notion.databases.query({
 		database_id: process.env.GUEST_DB ?? '',
 		filter: {
@@ -35,11 +36,18 @@ const FetchData = async () =>
 	})
 	const guest = data.results?.[0] as unknown as NotionGuest
 
-	// TODO: Add nice error handling if the guest isn't found
-	console.log({
-		emailAddresses,
-		data
-	})
+	if (!guest)
+	{
+		console.log({ emailAddresses, data })
+		captureException(new Error(`Guest not found: ${ emailAddresses[0].emailAddress.toLowerCase() }`))
+
+		return (
+
+			<Content data="">
+				<section><p>Whoops, something went wrong, let Dan or Amy know so they can confirm the email address is right.</p></section>
+			</Content>
+		)
+	}
 
 	const people: any = await notion.databases.query({
 		database_id: process.env.PEOPLE_DB ?? '',
