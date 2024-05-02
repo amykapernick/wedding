@@ -23,6 +23,8 @@ const theme = {
 	gradient: {
 		blue: {
 			300: themeColours.green,
+			600: themeColours.green,
+			900: themeColours.green,
 		},
 	},
 	text: {
