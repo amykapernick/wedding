@@ -36,6 +36,12 @@ const theme = {
 			bg: themeColours.neutral,
 		},
 	},
+	loader: {
+		teal: themeColours.green,
+		purple: themeColours.green,
+		pink: themeColours.green,
+		bg: themeColours.green_light,
+	}
 };
 
 export default theme
