@@ -1,0 +1,64 @@
+.person {
+	font-family: $font_headings;
+	font-weight: 700;
+	color: $green;
+	background: $white;
+	z-index: 200;
+}
+
+.event {
+	color: $white;
+	
+	& .wrapper {
+		box-shadow: 0 0 2px $white;
+	}
+	
+	& .title {
+		width: 100%;
+		max-width: 100%;
+		white-space: wrap;
+		overflow: visible;
+		text-align: center;
+	}
+
+	&:hover {
+		width: auto;
+		min-width: max-content;
+		z-index: 100;
+
+		& .wrapper {
+			overflow: visible;
+		}
+
+
+		& .container {
+			max-width: unset;
+			min-width: max-content;
+			background: $green;
+			overflow: visible;
+		}
+	}
+}
+
+.timeline {
+	& .dividers {
+		& > div {
+			height: 25%;
+
+			&:nth-child(1) {
+				height: 70%;
+			}
+	
+			&:nth-child(3) {
+				height: 40%;
+			}
+		}
+	}
+	
+	& .time {
+		font-size: 0.8em;
+		top: 0;
+		color: inherit;
+	}
+}
+
