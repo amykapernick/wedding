@@ -37,7 +37,7 @@
 	},
 	"dependencies": {
 		"@clerk/nextjs": "^4.29.7",
-		"@sentry/nextjs": "^7.100.1",
+		"@sentry/nextjs": "^8.10.0",
 		"calendar-link": "^2.6.0",
 		"date-fns": "^3.3.1",
 		"fathom-client": "^3.6.0",
