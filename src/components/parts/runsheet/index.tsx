@@ -5,6 +5,7 @@ import Calendar from "@img/icons/calendar.svg";
 import { ics } from "calendar-link";
 import FrameTop from "@img/frame_top.png";
 import Image from "next/image";
+import { formatInTimeZone } from "date-fns-tz";
 
 type RunsheetProps = Stakeholder & {};
 
@@ -58,8 +59,8 @@ const Runsheet = (props: RunsheetProps) => {
 							<tbody>
 								{events.map((event: RunsheetEvent) => (
 									<tr key={event.name}>
-										<td>{format(event.start, "h:mm aaa")}</td>
-										<td>{event?.end && format(event.end, "hh:mm aaa")}</td>
+										<td>{formatInTimeZone(event.start, "Australia/Perth", "h:mm aaa")}</td>
+										<td>{event?.end && formatInTimeZone(event.end, "Australia/Perth", "hh:mm aaa")}</td>
 										<td>{event.name}</td>
 										<td>
 											<small>{event?.notes}</small>

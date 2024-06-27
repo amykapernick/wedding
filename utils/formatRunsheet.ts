@@ -14,26 +14,6 @@ type formatRunsheetProps = {
 
 const formatEvent = (event: NotionRunsheetEvent) =>
 {
-	console.log({
-		iso: parseISO(event.properties.Date.date.start),
-		start: event.properties.Date.date.start,
-		// Date format: 2024-10-05T16:00:00.000+08:00
-		parse: parse(
-			event.properties.Date.date.start,
-			'yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx',
-			new Date()
-		),
-		// format the parsed date, as the +8 timezone
-		format: formatInTimeZone(
-			parse(
-				event.properties.Date.date.start,
-				'yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx',
-				new Date()
-			),
-			'Australia/Perth',
-			'dd-MMM hh:mm aaa'
-		)
-	})
 	const eventData = {
 		name: event.properties.Name.title[0].plain_text,
 		tags: event.properties.Tags.multi_select.map(tag => tag.name),
