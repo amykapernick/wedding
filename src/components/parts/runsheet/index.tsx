@@ -46,7 +46,7 @@ const Runsheet = (props: RunsheetProps) => {
 						<table className={styles.timetable}>
 							<thead>
 								<tr className="spacing">
-									<th colSpan={5}></th>
+									<th colSpan={5} aria-hidden></th>
 								</tr>
 								<tr>
 									<th>Start</th>

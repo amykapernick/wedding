@@ -12,6 +12,30 @@ type formatRunsheetProps = {
 	events: NotionRunsheetEvent[]
 }
 
+const compareRunsheets = (...sheets: string[][]): boolean =>
+{
+	const compareSheets = (sheet_1: string[], sheet_2: string[]) =>
+	{
+		if (sheet_1.length !== sheet_2.length) return false;
+
+		const sortedSheet_1 = sheet_1.slice().sort();
+		const sortedSheet_2 = sheet_2.slice().sort();
+
+		for (let i = 0; i < sortedSheet_1.length; i++)
+		{
+			if (sortedSheet_1[i] !== sortedSheet_2[i]) return false;
+		}
+		return true;
+	}
+
+	for (let i = 1; i < sheets.length; i++)
+	{
+		if (!compareSheets(sheets[0], sheets[i])) return false;
+	}
+
+	return true;
+}
+
 const formatEvent = (event: NotionRunsheetEvent) =>
 {
 	const eventData = {
@@ -56,7 +80,10 @@ const formatRunsheet = (props: formatRunsheetProps) =>
 		{
 			event.properties.GuestIds.formula.string.split(',').forEach((id: string) =>
 			{
-				if (formattedEvents[id])
+				if (
+					formattedEvents[id]
+					&& !formattedEvents[id].eventIds.includes(event.id)
+				)
 				{
 					formattedEvents[id].events.push(eventData)
 					formattedEvents[id].eventIds.push(event.id)
@@ -65,9 +92,7 @@ const formatRunsheet = (props: formatRunsheetProps) =>
 		}
 	})
 
-	if (
-		Object.values(formattedEvents).map(({ eventIds }) => eventIds).every((eventIds, i, arr) => eventIds.every((eventId, j, arr) => eventId === arr[0][j]))
-	)
+	if (compareRunsheets(Object.values(formattedEvents).map(({ eventIds }) => eventIds)))
 	{
 		formattedEvents = {
 			all: {
