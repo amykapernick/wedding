@@ -1,86 +1,59 @@
 import Guest from "@parts/guest";
-import { Client } from '@notionhq/client'
-import { currentUser } from '@clerk/nextjs';
-import type { NotionPerson, NotionGuest } from "@ts/people";
-import type { User } from "@clerk/nextjs/server";
-import Content from '@parts/details';
+import type { NotionPerson } from "@ts/people";
+import Content from "@parts/details";
 import { TrackEvent } from "@parts/fathom";
-import { captureException } from "@sentry/nextjs";
-
-const { NotionToMarkdown } = require("notion-to-md");
+import fetchCurrentGuest from "@utils/fetchData/currentGuest";
+import fetchGuestData from "@utils/fetchData/guestData";
+import { notionToMarkdown } from "@utils/fetchData/notion";
 
 const statuses = {
-	'RSVPed': 'rsvp',
-	'Invited': 'invited',
-	'Invitation': 'invited',
-	'Not Invited': 'invited',
-	'Save the Date': 'invited',
-	'Declined': 'declined'
-}
+	RSVPed: "rsvp",
+	Invited: "invited",
+	Invitation: "invited",
+	"Not Invited": "invited",
+	"Save the Date": "invited",
+	Declined: "declined",
+};
 
-const FetchData = async () =>
-{
-	const { emailAddresses } = await currentUser() as User;
-	const notion = new Client({
-		auth: process.env.NOTION_API_KEY
-	})
+const FetchData = async () => {
+	const { guest, email } = await fetchCurrentGuest();
 
-	const data = await notion.databases.query({
-		database_id: process.env.GUEST_DB ?? '',
-		filter: {
-			property: 'GokD',
-			email: {
-				equals: emailAddresses[0].emailAddress.toLowerCase()
-			}
-		}
-	})
-	const guest = data.results?.[0] as unknown as NotionGuest
-
-	if (!guest)
-	{
-		console.log({ emailAddresses, data })
-		captureException(new Error(`Guest not found: ${ emailAddresses[0].emailAddress.toLowerCase() }`))
-
+	if (!guest) {
 		return (
-
 			<Content data="">
-				<section><p>Whoops, something went wrong, let Dan or Amy know so they can confirm the email address is right.</p></section>
+				<section>
+					<p>
+						Whoops, something went wrong, let Dan or Amy know so
+						they can confirm the email address is right.
+					</p>
+				</section>
 			</Content>
-		)
+		);
 	}
 
-	const people: any = await notion.databases.query({
-		database_id: process.env.PEOPLE_DB ?? '',
-		filter: {
-			property: 'Guests',
-			relation: {
-				contains: guest.id
-			}
-		}
-	})
-	const n2m = new NotionToMarkdown({
-		notionClient: notion
-	})
-	const pageData = await n2m.pageToMarkdown(process.env.CONTENT_ID ?? '');
+	const people: NotionPerson[] = await fetchGuestData(guest.id);
+	const pageData = await notionToMarkdown.pageToMarkdown(
+		process.env.CONTENT_ID ?? ""
+	);
 
 	return (
 		<>
-			{emailAddresses[0].emailAddress.toLowerCase() && <TrackEvent name="Signed In" />}
+			{email && <TrackEvent name="Signed In" />}
 			<Content
-				data={n2m.toMarkdownString(pageData)?.parent}
+				data={notionToMarkdown.toMarkdownString(pageData)?.parent}
 				guestStatus={statuses[guest.properties.Status.status.name]}
 			>
 				<Guest
-					people={people?.results as NotionPerson[]}
+					people={people}
 					guest={{
 						id: guest?.id,
 						name: guest.properties.Name.title[0].plain_text,
-						status: guest.properties.Status.status.name
+						status: guest.properties.Status.status.name,
 					}}
 				/>
 			</Content>
 		</>
-	)
-}
+	);
+};
 
-export default FetchData
+export default FetchData;

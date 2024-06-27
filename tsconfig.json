@@ -38,7 +38,10 @@
       ],
       "@app/*": [
         "./src/app/*"
-      ]
+      ],
+      "@utils/*": [
+        "./utils/*"
+      ],
     },
     "allowJs": true,
     "strict": true

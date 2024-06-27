@@ -1,79 +1,48 @@
-import { Client } from '@notionhq/client'
-import { currentUser } from '@clerk/nextjs';
-import type { NotionGuest } from "@ts/people";
+import { Client } from "@notionhq/client";
+import { currentUser } from "@clerk/nextjs/server";
+import type { NotionGuest, NotionRelation } from "@ts/people";
 import type { User } from "@clerk/nextjs/server";
 import { TrackEvent } from "@parts/fathom";
-import GuestRunsheets from "@components/parts/runsheets/guest";
-import { NotionStakeholder } from '@ts/runsheet';
+import GuestRunsheets from "@components/parts/runsheet/guest";
+import { NotionStakeholder } from "@ts/runsheet";
+import fetchCurrentGuest from "@utils/fetchData/currentGuest";
+import fetchRunsheetData from "@utils/fetchData/runsheets";
+import fetchGuestData from "@utils/fetchData/guestData";
+import formatRunsheet from "@utils/formatRunsheet";
+import Runsheet from "@components/parts/runsheet";
 
 type FetchGuestRunsheetProps = {
-	guest?: string | null
-}
+	guest?: string | null;
+};
 
-const FetchData = async (props: FetchGuestRunsheetProps) =>
-{
-	const { emailAddresses } = await currentUser() as User;
-	const notion = new Client({
-		auth: process.env.NOTION_API_KEY
-	})
+const FetchData = async (props: FetchGuestRunsheetProps) => {
+	const { guest, email } = await fetchCurrentGuest(props.guest ?? undefined);
+	const people = await fetchGuestData(guest?.id);
 
-	let filter: any = {
-		property: 'GokD',
-		email: {
-			equals: emailAddresses[0].emailAddress.toLowerCase()
-		}
-	}
+	const peopleIds = guest?.properties.Guests.relation as NotionRelation[];
 
-	if (props.guest)
-	{
-		filter = {
-			property: 'ID',
-			formula: {
-				string: {
-					equals: props.guest
-				}
-			}
-		}
-	}
+	const { runsheetEvents, stakeholders } = await fetchRunsheetData({
+		guests: peopleIds,
+	});
 
-
-	const data = await notion.databases.query({
-		database_id: process.env.GUEST_DB ?? '',
-		filter
-	})
-	const guest = data.results?.[0] as unknown as NotionGuest
-	const runsheetEvents: any = await notion.databases.query({
-		database_id: process.env.RUNSHEET_DB ?? '',
-		filter: {
-			property: 'Guests',
-			rollup: {
-				any: {
-					relation: {
-						contains: guest.id
-					}
-				}
-			}
-		}
-	})
-	const stakeholders = await notion.databases.query({
-		database_id: process.env.STAKEHOLDER_DB ?? '',
-		filter: {
-			property: 'Invitations',
-			relation: {
-				contains: guest.id
-			}
-		}
-	})
+	const runsheetData = formatRunsheet({
+		guestName: guest?.properties.Name.title[0].plain_text,
+		type: "guest",
+		sheets: people.map(({ properties, id }) => ({
+			id,
+			name: properties.Name.title[0].plain_text,
+		})),
+		events: runsheetEvents.results,
+	});
 
 	return (
 		<>
-			{emailAddresses[0].emailAddress.toLowerCase() && <TrackEvent name="Signed In" />}
-			<GuestRunsheets
-				runsheetEvents={runsheetEvents?.results}
-				stakeholders={stakeholders?.results as any as NotionStakeholder[]}
-			/>
+			{email.toLowerCase() && <TrackEvent name="Signed In" />}
+			{Object.entries(runsheetData).map(([id, data]) => (
+				<Runsheet key={id} {...data} />
+			))}
 		</>
-	)
-}
+	);
+};
 
-export default FetchData
+export default FetchData;
