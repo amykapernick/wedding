@@ -62,7 +62,8 @@ const formatSchedule = (props: formatRunsheetProps) =>
 		events: formattedEvents,
 		startDate,
 		endDate,
-		guests
+		guests,
+		type
 	}
 }
 

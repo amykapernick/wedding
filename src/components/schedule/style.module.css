@@ -1,17 +1,24 @@
 .schedule {
 	text-transform: none;
-	max-width: 100%;
 	overflow-x: auto;
+	margin: 0 auto;
+
+	&:not([data-type="vendor"]) {
+		max-width: min(100%, calc(250px * var(--days) + 100px));
+	}
+	&[data-type="vendor"] {
+		max-width: min(100%, 1200px);
+	}
 
 	& > * {
 		min-width: calc((150px * var(--days)) + 100px);
 	}
 }
 
-.appointment.appointment {
+.appointment.appointment.appointment {
 	position: relative;
 	text-overflow: ellipsis;
-	background: $green;
+	background-color: $green;
 	color: $white;
 	font-family: $font_main;
 
@@ -25,6 +32,11 @@
 
 	& .guest {
 		font-style: italic;
+	}
+
+	&:hover {
+		background-color: $green_light;
+		color: $neutral;
 	}
 }
 

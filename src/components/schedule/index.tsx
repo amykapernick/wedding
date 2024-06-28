@@ -9,6 +9,7 @@ import Appointment from "./appointment";
 import { CSSProperties } from "react";
 
 type ScheduleProps = {
+	type: "guest" | "vendor";
 	events: RunsheetEvent[];
 	startDate: Date;
 	endDate: Date;
@@ -16,7 +17,7 @@ type ScheduleProps = {
 };
 
 const Schedule = (props: ScheduleProps) => {
-	const { events, startDate, endDate, guests } = props;
+	const { events, startDate, endDate, guests, type } = props;
 	const guestIndex: { id: string; name: string }[] = Object.values(guests).map((guest, i) => ({
 		...guest,
 		index: i,
@@ -24,7 +25,7 @@ const Schedule = (props: ScheduleProps) => {
 	const days = differenceInCalendarDays(endDate, startDate) !== 1 ? differenceInCalendarDays(endDate, startDate) + 1 : differenceInCalendarDays(endDate, startDate);
 
 	return (
-		<div className={styles.schedule} style={{ "--days": days } as CSSProperties}>
+		<div className={styles.schedule} style={{ "--days": days } as CSSProperties} data-type={type}>
 			<Scheduler
 				data={
 					events.map((event) => ({

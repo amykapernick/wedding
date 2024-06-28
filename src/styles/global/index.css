@@ -8,8 +8,6 @@
 
 @import './clerk';
 
-@import './schedule';
-
 *, *::before, *::after {
 	box-sizing: border-box;
 	outline-offset: 0.2em;
