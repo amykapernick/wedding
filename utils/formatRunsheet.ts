@@ -1,6 +1,5 @@
 import { NotionRunsheetEvent, RunsheetData } from "@ts/runsheet"
-import { format, parse, parseISO } from "date-fns"
-import { formatInTimeZone } from "date-fns-tz"
+import { parse } from "date-fns"
 
 type formatRunsheetProps = {
 	guestName: string
@@ -12,21 +11,23 @@ type formatRunsheetProps = {
 	events: NotionRunsheetEvent[]
 }
 
+const compareSheets = (sheet_1: string[], sheet_2: string[]) =>
+{
+	if (sheet_1.length !== sheet_2.length) return false;
+
+	const sheet_1_sorted = sheet_1.slice().sort();
+	const sheet_2_sorted = sheet_2.slice().sort();
+
+	for (let i = 0; i < sheet_1_sorted.length; i++)
+	{
+		if (sheet_1_sorted[i] !== sheet_2_sorted[i]) return false;
+	}
+	return true;
+}
+
 const compareRunsheets = (...sheets: string[][]): boolean =>
 {
-	const compareSheets = (sheet_1: string[], sheet_2: string[]) =>
-	{
-		if (sheet_1.length !== sheet_2.length) return false;
-
-		const sortedSheet_1 = sheet_1.slice().sort();
-		const sortedSheet_2 = sheet_2.slice().sort();
-
-		for (let i = 0; i < sortedSheet_1.length; i++)
-		{
-			if (sortedSheet_1[i] !== sortedSheet_2[i]) return false;
-		}
-		return true;
-	}
+	if (sheets.length < 2) return true
 
 	for (let i = 1; i < sheets.length; i++)
 	{
@@ -62,7 +63,7 @@ const formatRunsheet = (props: formatRunsheetProps) =>
 	const { sheets, events, guestName, type } = props
 	let formattedEvents: RunsheetData = {}
 
-	sheets.forEach(({ id, name }) =>
+	sheets?.forEach(({ id, name }) =>
 	{
 		formattedEvents[id.replaceAll('-', '')] = {
 			name: name,
@@ -90,9 +91,15 @@ const formatRunsheet = (props: formatRunsheetProps) =>
 				}
 			})
 		}
+		else if (type === 'vendor')
+		{
+			const vendor = sheets[0].id
+			formattedEvents[vendor].events.push(eventData)
+			formattedEvents[vendor].eventIds.push(event.id)
+		}
 	})
 
-	if (compareRunsheets(Object.values(formattedEvents).map(({ eventIds }) => eventIds)))
+	if (compareRunsheets(...Object.values(formattedEvents).map(({ eventIds }) => eventIds)))
 	{
 		formattedEvents = {
 			all: {

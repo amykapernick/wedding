@@ -1,22 +1,18 @@
-import { Client } from "@notionhq/client";
-import { currentUser } from "@clerk/nextjs/server";
-import type { NotionGuest, NotionRelation } from "@ts/people";
-import type { User } from "@clerk/nextjs/server";
-import { TrackEvent } from "@parts/fathom";
-import GuestRunsheets from "@components/parts/runsheet/guest";
-import { NotionStakeholder } from "@ts/runsheet";
+import type { NotionRelation } from "@ts/people";
 import notion from "./notion";
 
 type fetchRunsheetDataProps = {
 	guests?: NotionRelation[];
+	vendor?: string;
 }
 
 const fetchRunsheetData = async (props: fetchRunsheetDataProps) =>
 {
-	const { guests } = props;
+	const { guests, vendor } = props;
 
 	let runsheetFilter = undefined
 	let stakeholderFilter = undefined
+	let stakeholders
 
 	if (guests)
 	{
@@ -33,24 +29,44 @@ const fetchRunsheetData = async (props: fetchRunsheetDataProps) =>
 			})),
 		}
 
-		stakeholderFilter = {
-			or: guests?.map((guest) => ({
-				property: "Guests",
-				relation: {
-					contains: guest.id,
+		stakeholders = await notion.databases.query({
+			database_id: process.env.STAKEHOLDER_DB ?? "",
+			filter: {
+				or: guests?.map((guest) => ({
+					property: "Guests",
+					relation: {
+						contains: guest.id,
+					},
+				})),
+			},
+		});
+	}
+	else if (vendor && vendor === 'all')
+	{
+		runsheetFilter = {
+			property: "Vendor Slugs",
+			formula: {
+				string: {
+					is_not_empty: true,
 				},
-			})),
+			},
+		}
+	}
+	else if (vendor)
+	{
+		runsheetFilter = {
+			property: "Vendor Slugs",
+			formula: {
+				string: {
+					contains: vendor,
+				},
+			},
 		}
 	}
 
 	const runsheetEvents: any = await notion.databases.query({
 		database_id: process.env.RUNSHEET_DB ?? "",
-		filter: runsheetFilter,
-	});
-
-	const stakeholders = await notion.databases.query({
-		database_id: process.env.STAKEHOLDER_DB ?? "",
-		filter: stakeholderFilter,
+		filter: runsheetFilter as any,
 	});
 
 	return ({

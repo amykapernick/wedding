@@ -1,8 +1,7 @@
 import { SignOutButton, SignedIn } from "@clerk/nextjs";
-import FetchData from "@components/parts/fetchData/gifts";
+import FetchData from "@components/fetchData/gifts";
 
-export default async function Registry ()
-{
+export default async function Registry() {
 	return (
 		<>
 			<h2>Gift Registry</h2>
@@ -13,5 +12,5 @@ export default async function Registry ()
 				</span>
 			</SignedIn>
 		</>
-	)
-}   
+	);
+}

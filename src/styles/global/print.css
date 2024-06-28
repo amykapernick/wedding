@@ -48,7 +48,14 @@ article[class*="runsheet"] {
 			margin-bottom: calc(-50px + 0.5em);
 		}
 
+		& table {
+			border-collapse: collapse;
+		}
+
 		& thead {
+			background: $green_light;
+			color: $green;
+
 			& .spacing {
 				height: 50px;
 				background: $white;
@@ -58,6 +65,19 @@ article[class*="runsheet"] {
 					padding: 0;
 				}
 			}
+
+			& th {
+				border-top: 1px solid $green;
+				border-bottom: 1px solid $green;
+			}
+		}
+
+		& tr {
+			page-break-inside: avoid;
+		}
+
+		& td {
+			border-bottom: 1px solid rgba($green, 0.5);
 		}
 	}
 

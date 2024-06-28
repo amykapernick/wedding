@@ -1,9 +1,7 @@
 import { SignOutButton } from "@clerk/nextjs";
-import FetchData from "@components/parts/fetchData/guestSchedule";
+import FetchData from "@components/fetchData/guestSchedule";
 
-export default async function Runsheet ()
-{
-
+export default async function Runsheet() {
 	return (
 		<>
 			<h2 id="runsheet">Schedule</h2>
@@ -12,5 +10,5 @@ export default async function Runsheet ()
 				<SignOutButton>Log Out</SignOutButton>
 			</span>
 		</>
-	)
+	);
 }

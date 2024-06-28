@@ -1,7 +1,7 @@
-import Guest from "@parts/guest";
+import Guest from "@components/guest";
 import type { NotionPerson } from "@ts/people";
-import Content from "@parts/details";
-import { TrackEvent } from "@parts/fathom";
+import Content from "@components/details";
+import { TrackEvent } from "@components/fathom";
 import fetchCurrentGuest from "@utils/fetchData/currentGuest";
 import fetchGuestData from "@utils/fetchData/guestData";
 import { notionToMarkdown } from "@utils/fetchData/notion";
@@ -22,27 +22,19 @@ const FetchData = async () => {
 		return (
 			<Content data="">
 				<section>
-					<p>
-						Whoops, something went wrong, let Dan or Amy know so
-						they can confirm the email address is right.
-					</p>
+					<p>Whoops, something went wrong, let Dan or Amy know so they can confirm the email address is right.</p>
 				</section>
 			</Content>
 		);
 	}
 
 	const people: NotionPerson[] = await fetchGuestData(guest.id);
-	const pageData = await notionToMarkdown.pageToMarkdown(
-		process.env.CONTENT_ID ?? ""
-	);
+	const pageData = await notionToMarkdown.pageToMarkdown(process.env.CONTENT_ID ?? "");
 
 	return (
 		<>
 			{email && <TrackEvent name="Signed In" />}
-			<Content
-				data={notionToMarkdown.toMarkdownString(pageData)?.parent}
-				guestStatus={statuses[guest.properties.Status.status.name]}
-			>
+			<Content data={notionToMarkdown.toMarkdownString(pageData)?.parent} guestStatus={statuses[guest.properties.Status.status.name]}>
 				<Guest
 					people={people}
 					guest={{

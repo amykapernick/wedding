@@ -51,6 +51,17 @@
 		padding: 0.7em;
 	}
 
+	& td {
+		&:nth-child(1), &:nth-child(2) {
+			white-space: nowrap;
+		}
+
+		&:nth-child(3) {
+			width: 40%;
+			max-width: max-content;
+		}
+	}
+
 	& tbody {
 		& tr {
 			&:nth-child(2n) {

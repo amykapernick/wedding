@@ -1,20 +1,19 @@
-import { ClerkProvider } from '@clerk/nextjs'
-import Header from '@parts/header'
-import Footer from '@parts/footer'
-import Fathom from '@parts/fathom'
-import '@styles/app.css'
+import { ClerkProvider } from "@clerk/nextjs";
+import Header from "@components/header";
+import Footer from "@components/footer";
+import Fathom from "@components/fathom";
+import "@styles/app.css";
 
 export const metadata = {
 	title: `Daniel & Amy's Wedding`,
-	description: 'Daniel & Amy are getting married',
-}
+	description: "Daniel & Amy are getting married",
+};
 
-export default function RootLayout ({
+export default function RootLayout({
 	children,
 }: Readonly<{
-	children: React.ReactNode
-}>)
-{
+	children: React.ReactNode;
+}>) {
 	return (
 		<ClerkProvider>
 			<html lang="en-AU">
@@ -29,7 +28,5 @@ export default function RootLayout ({
 				</body>
 			</html>
 		</ClerkProvider>
-	)
+	);
 }
-
-

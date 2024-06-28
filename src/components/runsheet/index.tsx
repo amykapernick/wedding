@@ -1,6 +1,6 @@
 import { RunsheetEvent, Stakeholder } from "@ts/runsheet";
 import styles from "./styles.module.css";
-import { format, add } from "date-fns";
+import { format } from "date-fns";
 import Calendar from "@img/icons/calendar.svg";
 import { ics } from "calendar-link";
 import FrameTop from "@img/frame_top.png";
@@ -16,7 +16,7 @@ const Runsheet = (props: RunsheetProps) => {
 	let newPage = false;
 
 	events.forEach((event) => {
-		const day = format(event.start, "EEEE, dd MMM");
+		const day = formatInTimeZone(event.start, "Australia/Perth", "EEEE, dd MMM");
 		if (!days[day]) days[day] = [];
 		days[day].push({
 			...event,
@@ -46,7 +46,11 @@ const Runsheet = (props: RunsheetProps) => {
 						<table className={styles.timetable}>
 							<thead>
 								<tr className="spacing">
-									<th colSpan={5} aria-hidden></th>
+									<th colSpan={5} aria-hidden>
+										<span className="sr-only" aria-hidden>
+											Spacing header
+										</span>
+									</th>
 								</tr>
 								<tr>
 									<th>Start</th>
@@ -60,7 +64,7 @@ const Runsheet = (props: RunsheetProps) => {
 								{events.map((event: RunsheetEvent) => (
 									<tr key={event.name}>
 										<td>{formatInTimeZone(event.start, "Australia/Perth", "h:mm aaa")}</td>
-										<td>{event?.end && formatInTimeZone(event.end, "Australia/Perth", "hh:mm aaa")}</td>
+										<td>{event?.end && formatInTimeZone(event.end, "Australia/Perth", "h:mm aaa")}</td>
 										<td>{event.name}</td>
 										<td>
 											<small>{event?.notes}</small>
