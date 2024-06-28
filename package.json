@@ -8,9 +8,6 @@
 		"start": "doppler run -- npm run dev",
 		"clean": "rm -rf .next"
 	},
-	"engines": {
-		"node": ">=20.0.0"
-	},
 	"devDependencies": {
 		"@notionhq/client": "^2.2.15",
 		"@svgr/webpack": "^8.1.0",
