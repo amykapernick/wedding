@@ -4,7 +4,7 @@ import fetchCurrentGuest from "@utils/fetchData/currentGuest";
 import fetchRunsheetData from "@utils/fetchData/runsheets";
 import fetchGuestData from "@utils/fetchData/guestData";
 import formatRunsheet from "@utils/formatRunsheet";
-import Runsheet from "@components/runsheet";
+import Schedule from "@components/schedule";
 
 type FetchGuestRunsheetProps = {
 	guest?: string | null;
@@ -33,10 +33,10 @@ const FetchData = async (props: FetchGuestRunsheetProps) => {
 	return (
 		<>
 			{email.toLowerCase() && <TrackEvent name="Signed In" />}
-			<h1>Schedule</h1>
 			{/* {Object.entries(runsheetData).map(([id, data]) => (
 				<Runsheet key={id} {...data} />
 			))} */}
+			<Schedule data={scheduleData} />
 		</>
 	);
 };

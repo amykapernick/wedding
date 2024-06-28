@@ -6,10 +6,10 @@ publish = ".next"
 package = "@netlify/plugin-nextjs"
 
 [context.deploy-preview]
-environment = { NODE_VERSION = "20.0.0" }
+environment = { NODE_VERSION = "20.10.0" }
 
 [context.production]
-environment = { NODE_VERSION = "20.0.0" }
+environment = { NODE_VERSION = "20.10.0" }
 
 [context.branch-deploy]
-environment = { NODE_VERSION = "20.0.0" }
+environment = { NODE_VERSION = "20.10.0" }
