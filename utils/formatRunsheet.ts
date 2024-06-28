@@ -1,4 +1,4 @@
-import { NotionRunsheetEvent, RunsheetData } from "@ts/runsheet"
+import { NotionRunsheetEvent, RunsheetData, RunsheetEvent } from "@ts/runsheet"
 import { parse } from "date-fns"
 
 type formatRunsheetProps = {
@@ -37,7 +37,7 @@ const compareRunsheets = (...sheets: string[][]): boolean =>
 	return true;
 }
 
-const formatEvent = (event: NotionRunsheetEvent) =>
+export const formatEvent = (event: NotionRunsheetEvent): RunsheetEvent =>
 {
 	const eventData = {
 		name: event.properties.Name.title[0].plain_text,
@@ -52,7 +52,8 @@ const formatEvent = (event: NotionRunsheetEvent) =>
 			'yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx',
 			new Date()
 		) : null,
-		notes: event.properties.Notes.rich_text.map(note => note.plain_text).join('\n')
+		notes: event.properties.Notes.rich_text.map(note => note.plain_text).join('\n'),
+		guests: []
 	}
 
 	return eventData

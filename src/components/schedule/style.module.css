@@ -1,0 +1,69 @@
+.schedule {
+	text-transform: none;
+	max-width: 100%;
+	overflow-x: auto;
+
+	& > * {
+		min-width: calc((150px * var(--days)) + 100px);
+	}
+}
+
+.appointment.appointment {
+	position: relative;
+	text-overflow: ellipsis;
+	background: $green;
+	color: $white;
+	font-family: $font_main;
+
+		& :global(.VerticalAppointment-title),
+		& :global(.VerticalAppointment-content) {
+			color: inherit;
+			white-space: break-spaces;
+			text-overflow: inherit;
+			margin-bottom: 0.5em;
+		}
+
+	& .guest {
+		font-style: italic;
+	}
+}
+
+.dialog {
+	padding: 30px;
+	color: $neutral;
+	max-width: 300px;
+	height: auto;
+	max-height: max-content;
+}
+
+.open {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: none;
+	border: none;
+}
+
+.close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 5px;
+	background: none;
+	border-width: 0px;
+	color: $navy;
+	border-radius: 50%;
+	line-height: 1;
+	height: 1.5em;
+	width: 1.5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		background: $navy;
+		color: $white;
+	}
+}

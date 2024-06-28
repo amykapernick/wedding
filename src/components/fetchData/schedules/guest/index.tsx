@@ -5,6 +5,7 @@ import fetchRunsheetData from "@utils/fetchData/runsheets";
 import fetchGuestData from "@utils/fetchData/guestData";
 import formatRunsheet from "@utils/formatRunsheet";
 import Schedule from "@components/schedule";
+import formatSchedule from "@utils/formatSchedule";
 
 type FetchGuestRunsheetProps = {
 	guest?: string | null;
@@ -20,23 +21,33 @@ const FetchData = async (props: FetchGuestRunsheetProps) => {
 		guests: peopleIds,
 	});
 
-	const scheduleData = formatRunsheet({
-		guestName: guest?.properties.Name.title[0].plain_text,
-		type: "guest",
-		sheets: people.map(({ properties, id }) => ({
+	let guestData: Record<string, { id: string; name: string }> = {
+		all: {
+			id: "all",
+			name: guest?.properties.Name.title[0].plain_text ?? "",
+		},
+	};
+
+	people.forEach(({ properties, id }) => {
+		guestData[id.replaceAll("-", "")] = {
 			id,
 			name: properties.Name.title[0].plain_text,
-		})),
+		};
+	});
+
+	// console.log({ guestData });
+
+	const scheduleData = formatSchedule({
+		type: "guest",
+		guests: guestData,
 		events: runsheetEvents.results,
+		guestName: guest?.properties.Name.title[0].plain_text ?? "",
 	});
 
 	return (
 		<>
 			{email.toLowerCase() && <TrackEvent name="Signed In" />}
-			{/* {Object.entries(runsheetData).map(([id, data]) => (
-				<Runsheet key={id} {...data} />
-			))} */}
-			<Schedule data={scheduleData} />
+			<Schedule {...scheduleData} />
 		</>
 	);
 };
