@@ -1,5 +1,5 @@
 import { SignOutButton } from "@clerk/nextjs";
-import FetchData from "@components/fetchData/guestSchedule";
+import FetchData from "@components/fetchData/schedules/guest";
 
 export default async function Runsheet() {
 	return (
