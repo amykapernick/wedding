@@ -1,10 +1,11 @@
 .cl-signIn-root {
 	margin: 0 auto;
 
-	& .cl-card {
+	& .cl-card, & .cl-cardBox {
 		box-shadow: none;
 		background: none;
 		padding: 0;
+		border-radius: 0;
 	}
 
 	& .cl-header, & .cl-logoBox {
@@ -35,6 +36,10 @@
 
 	& .cl-formButtonPrimary {
 		@include button;
+
+		& svg {
+			display: none;
+		}
 	}
 
 	& .cl-identityPreview {

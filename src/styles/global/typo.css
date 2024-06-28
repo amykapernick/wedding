@@ -130,3 +130,16 @@ span.signout {
 		font-size: 1em;
 	}
 }
+
+dialog {
+	z-index: 100;
+	width: min(90vw, 800px);
+	height: min(90vh, 800px);
+	max-width: max-content;
+	max-height: max-content;
+
+	&::backdrop {
+		background: $black;
+		opacity: 0.9;
+	}
+}

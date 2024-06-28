@@ -29,6 +29,11 @@ export type NotionRunsheetEvent = {
 				}[]
 			}
 		}
+		GuestIds: {
+			formula: {
+				string: string
+			}
+		}
 		Notes: {
 			rich_text: {
 				plain_text: string
@@ -48,7 +53,15 @@ export type RunsheetEvent = {
 	start: Date;
 	end: Date | null;
 	notes: string;
+	guests: string[];
 }
+
+export type RunsheetData = Record<string, {
+	name: string
+	id: string
+	events: RunsheetEvent[]
+	eventIds?: string[]
+}>
 
 export type VendorRunsheetEvent = RunsheetEvent & {
 	vendors: string[]

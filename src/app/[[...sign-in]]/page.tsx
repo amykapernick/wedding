@@ -1,10 +1,7 @@
 import { SignIn, SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs";
-import FetchGuest from "@components/parts/fetchData/guest";
+import FetchGuest from "@components/fetchData/guest";
 
-export default async function Home ()
-{
-
-
+export default async function Home() {
 	return (
 		<>
 			<SignedIn>
@@ -19,5 +16,5 @@ export default async function Home ()
 				<SignIn />
 			</SignedOut>
 		</>
-	)
+	);
 }

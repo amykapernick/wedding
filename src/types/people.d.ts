@@ -95,7 +95,14 @@ export type NotionGuest = {
 				name: GuestStatus
 			}
 		}
+		Guests: {
+			relation: NotionRelation[]
+		}
 	}
+}
+
+export type NotionRelation = {
+	id: string
 }
 
 export type Guest = {

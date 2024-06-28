@@ -1,0 +1,114 @@
+@import '../../styles/mixins/index';
+
+.form {
+	padding: 0;
+	text-align: left;
+	max-height: 0px;
+	overflow: clip;
+	transition: max-height 0.5s ease-out;
+	max-width: 660px;
+	margin: 0 auto;
+
+	& :global(fieldset) {
+		padding: 0;
+	}
+
+	& :global(h2) {
+		margin: 0;
+		line-height: 1;
+	}
+
+	&[data-open="true"] {
+		max-height: 10000vh;
+		margin: 60px auto;
+	}
+}
+
+.person {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 10px 0 20px;
+	text-align: left;
+
+	& > *:not(.long):not(.radio) {
+		width: 45%;		
+	}
+
+	& > :global(*) {
+		width: 100%;
+		margin: 10px;
+		flex-grow: 1;
+	}
+}
+
+
+.radio {
+	margin: 10px;
+
+	& div {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		margin: -10px;
+	}
+
+	& input, & label {
+		margin: 0 0;
+		cursor: pointer;
+	}
+
+	& label {
+		width: calc(100% - 1.5em - 20px);
+		flex-grow: 1;
+		line-height: 2;
+		font-weight: 300;
+		text-transform: none;
+	}
+
+	& input[type="radio"] {
+		width: 1.2em;
+		height: 1.2em;
+		margin-right: 10px;
+	}
+
+	& span {
+		@include input;
+
+		display: flex;
+		align-items: center;
+		margin: 10px;
+		flex-grow: 1;
+		width: 45%;
+		min-width: max-content;
+	}
+}
+
+
+.name {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 0.8em;
+
+	& input {
+		appearance: none;
+		padding: 0;
+		margin: 0.2em 1ch;
+		flex-grow: 0;
+		width: calc(1ch * var(--chars));
+		border-color: transparent;
+		border-bottom-color: currentColor;
+		border-width: 0.5px;
+		border-image: none;
+		background: transparent;
+		font: inherit;
+	}
+}
+
+@media(min-width: 60em) {
+	.person {
+		&:not(:last-of-type) {
+			margin-bottom: 60px;
+		}
+	}
+}
