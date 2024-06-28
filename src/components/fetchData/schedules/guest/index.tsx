@@ -3,7 +3,6 @@ import { TrackEvent } from "@components/fathom";
 import fetchCurrentGuest from "@utils/fetchData/currentGuest";
 import fetchRunsheetData from "@utils/fetchData/runsheets";
 import fetchGuestData from "@utils/fetchData/guestData";
-import formatRunsheet from "@utils/formatRunsheet";
 import Schedule from "@components/schedule";
 import formatSchedule from "@utils/formatSchedule";
 

@@ -1,5 +1,5 @@
-import { NotionRunsheetEvent, RunsheetData, RunsheetEvent } from "@ts/runsheet"
-import { isBefore, parse } from "date-fns"
+import { NotionRunsheetEvent, RunsheetEvent } from "@ts/runsheet"
+import { isBefore } from "date-fns"
 import { formatEvent } from "./formatRunsheet"
 
 type formatRunsheetProps = {
