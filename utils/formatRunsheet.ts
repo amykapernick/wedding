@@ -83,12 +83,13 @@ const formatRunsheet = (props: formatRunsheetProps) =>
 			event.properties.GuestIds.formula.string.split(',').forEach((id: string) =>
 			{
 				if (
-					formattedEvents[id]
-					&& !formattedEvents[id].eventIds.includes(event.id)
+					formattedEvents?.[id]
+					&& formattedEvents[id].eventIds
+					&& !formattedEvents[id].eventIds?.includes(event.id)
 				)
 				{
 					formattedEvents[id].events.push(eventData)
-					formattedEvents[id].eventIds.push(event.id)
+					formattedEvents[id].eventIds?.push(event.id)
 				}
 			})
 		}
@@ -96,11 +97,11 @@ const formatRunsheet = (props: formatRunsheetProps) =>
 		{
 			const vendor = sheets[0].id
 			formattedEvents[vendor].events.push(eventData)
-			formattedEvents[vendor].eventIds.push(event.id)
+			formattedEvents[vendor].eventIds?.push(event.id)
 		}
 	})
 
-	if (compareRunsheets(...Object.values(formattedEvents).map(({ eventIds }) => eventIds)))
+	if (compareRunsheets(...Object.values(formattedEvents).map(({ eventIds }) => eventIds ?? [])))
 	{
 		formattedEvents = {
 			all: {
