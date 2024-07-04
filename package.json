@@ -4,7 +4,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"build:local": "doppler run -- npm run build",
-		"preview": "npm run build:local && next start",
+		"preview": "npm run build:local && doppler run -- next start",
 		"lint": "next lint",
 		"start": "doppler run -- npm run dev",
 		"clean": "rm -rf .next"
@@ -41,7 +41,7 @@
 		"@devexpress/dx-react-core": "^4.0.8",
 		"@devexpress/dx-react-scheduler": "^4.0.8",
 		"@devexpress/dx-react-scheduler-material-ui": "^4.0.8",
-		"@netlify/plugin-nextjs": "^4.41.3",
+		"@netlify/plugin-nextjs": "^5.3.3",
 		"@sentry/nextjs": "^8.13.0",
 		"calendar-link": "^2.6.0",
 		"date-fns": "^3.6.0",
