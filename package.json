@@ -4,6 +4,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"build:local": "doppler run -- npm run build",
+		"preview": "npm run build:local && next start",
 		"lint": "next lint",
 		"start": "doppler run -- npm run dev",
 		"clean": "rm -rf .next"
@@ -40,6 +41,7 @@
 		"@devexpress/dx-react-core": "^4.0.8",
 		"@devexpress/dx-react-scheduler": "^4.0.8",
 		"@devexpress/dx-react-scheduler-material-ui": "^4.0.8",
+		"@netlify/plugin-nextjs": "^4.41.3",
 		"@sentry/nextjs": "^8.13.0",
 		"calendar-link": "^2.6.0",
 		"date-fns": "^3.6.0",
@@ -52,8 +54,7 @@
 		"react-dom": "^18.3.1",
 		"react-router-dom": "^6.24.0",
 		"sharp": "^0.33.4",
-		"showdown": "^2.1.0",
-		"urlpattern-polyfill": "^10.0.0"
+		"showdown": "^2.1.0"
 	},
 	"overrides": {
 		"@mui/x-date-pickers": {
@@ -71,5 +72,6 @@
 		"eslint-plugin-react-hooks": {
 			"eslint": "^9.3.0"
 		}
-	}
+	},
+	"packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }

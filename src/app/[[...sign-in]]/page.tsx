@@ -1,7 +1,12 @@
 import { SignIn, SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import FetchGuest from "@components/fetchData/guest";
 
 export default async function Home() {
+	const userData = await currentUser();
+
+	console.log({ userData });
+
 	return (
 		<>
 			<SignedIn>
