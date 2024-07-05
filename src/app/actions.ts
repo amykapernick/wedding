@@ -2,6 +2,7 @@
 
 import { Client } from '@notionhq/client';
 import { Person } from '@ts/people';
+import * as Sentry from "@sentry/nextjs";
 import { trackEvent } from 'fathom-client';
 
 const notionFields: Record<string, string> = {
@@ -102,6 +103,8 @@ export async function submit (guest: string, formData: FormData)
 		{
 			console.log({ err })
 
+			Sentry.captureException(err)
+
 			return err
 		})
 
@@ -132,6 +135,8 @@ export async function updateGift (gift: string, purchased: number)
 		.catch(err =>
 		{
 			console.log({ err })
+
+			Sentry.captureException(err)
 
 			return err
 		})
