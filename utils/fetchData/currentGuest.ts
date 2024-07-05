@@ -1,7 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import type { NotionGuest } from "@ts/people";
 import type { User } from "@clerk/nextjs/server";
-import { captureException } from "@sentry/nextjs";
 import notion from './notion'
 
 const fetchCurrentGuest = async (guestId?: string) =>
@@ -38,11 +37,6 @@ const fetchCurrentGuest = async (guestId?: string) =>
 	if (!guest)
 	{
 		console.log({ emailAddresses, data, guestId });
-		captureException(
-			new Error(
-				`Guest not found: ${ email }`
-			)
-		);
 	}
 
 	return ({
