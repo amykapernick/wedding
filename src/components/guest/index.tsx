@@ -26,6 +26,14 @@ const Guest = ({ people, guest }: GuestProps) => {
 	const pastDate = new Date("2024-08-05") <= new Date();
 	const rsvpOpen = openSection || pastDate;
 
+	console.log({
+		people,
+		guest,
+		status,
+		pastDate,
+		rsvpOpen,
+	});
+
 	return (
 		<section>
 			<h2 id="rsvp">RSVP</h2>
