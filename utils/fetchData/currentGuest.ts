@@ -1,11 +1,18 @@
 import { currentUser } from "@clerk/nextjs/server";
 import type { NotionGuest } from "@ts/people";
 import type { User } from "@clerk/nextjs/server";
-import { captureException } from "@sentry/nextjs";
+import { captureException, getReplay } from "@sentry/nextjs";
 import notion from './notion'
 
 const fetchCurrentGuest = async (guestId?: string) =>
 {
+	const replay = getReplay();
+
+	if (replay)
+	{
+		replay.start()
+	}
+
 	const { emailAddresses } = (await currentUser()) as User;
 
 	let filter: any = {
