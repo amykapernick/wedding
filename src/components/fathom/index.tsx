@@ -1,55 +1,55 @@
-"use client"
+"use client";
 
-import { load, trackEvent, trackPageview } from "fathom-client"
-import { usePathname, useSearchParams } from "next/navigation"
-import { Suspense, useEffect } from "react"
+import { load, trackEvent, trackPageview } from "fathom-client";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense, useEffect } from "react";
+import { getReplay } from "@sentry/nextjs";
 
-type EventTypes = 'Signed In' | 'Gift Claimed' | 'RSVP Form Submitted' | 'Initial RSVP'
+type EventTypes = "Signed In" | "Gift Claimed" | "RSVP Form Submitted" | "Initial RSVP";
 
-const TrackPageView = () =>
-{
-	const pathname = usePathname()
-	const searchParams = useSearchParams()
+const TrackPageView = () => {
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
 
-	useEffect(() =>
-	{
+	useEffect(() => {
 		load(process.env.NEXT_PUBLIC_FATHOM_SITE ?? "", {
-			includedDomains: [process.env.URL ?? ""]
-		})
-	}, [])
+			includedDomains: [process.env.URL ?? ""],
+		});
+	}, []);
 
-	useEffect(() =>
-	{
-		trackPageview()
-	}, [pathname, searchParams])
+	useEffect(() => {
+		trackPageview();
+	}, [pathname, searchParams]);
 
-	return null
-}
+	return null;
+};
 
-export const TrackEvent = ({ name }: { name: EventTypes }) =>
-{
-	useEffect(() =>
-	{
+export const TrackEvent = ({ name }: { name: EventTypes }) => {
+	useEffect(() => {
 		load(process.env.NEXT_PUBLIC_FATHOM_SITE ?? "", {
-			includedDomains: [process.env.URL ?? ""]
-		})
-	}, [])
+			includedDomains: [process.env.URL ?? ""],
+		});
+	}, []);
 
-	useEffect(() =>
-	{
-		trackEvent(name)
-	}, [name])
+	useEffect(() => {
+		trackEvent(name);
+	}, [name]);
 
-	return null
-}
+	return null;
+};
 
-const Fathom = () =>
-{
+const Fathom = () => {
+	const replay = getReplay();
+
+	if (replay && !replay?._replay?.isEnabled()) {
+		replay.start();
+	}
+
 	return (
 		<Suspense fallback={null}>
 			<TrackPageView />
 		</Suspense>
-	)
-}
+	);
+};
 
-export default Fathom
+export default Fathom;
