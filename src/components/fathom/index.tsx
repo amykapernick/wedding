@@ -41,8 +41,12 @@ export const TrackEvent = ({ name }: { name: EventTypes }) => {
 const Fathom = () => {
 	const replay = getReplay();
 
-	if (replay && !replay?._replay?.isEnabled()) {
-		replay.start();
+	if (replay) {
+		try {
+			replay.start();
+		} catch (error) {
+			console.error("Error starting Sentry replay:", error);
+		}
 	}
 
 	return (
