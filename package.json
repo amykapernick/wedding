@@ -41,7 +41,7 @@
 		"@devexpress/dx-react-core": "^4.0.8",
 		"@devexpress/dx-react-scheduler": "^4.0.8",
 		"@devexpress/dx-react-scheduler-material-ui": "^4.0.8",
-		"@sentry/nextjs": "^8.14.0",
+		"@sentry/nextjs": "^8.15.0",
 		"calendar-link": "^2.6.0",
 		"date-fns": "^3.6.0",
 		"date-fns-tz": "^3.1.3",
