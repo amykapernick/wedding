@@ -115,7 +115,12 @@ const formatRunsheet = (props: formatRunsheetProps) =>
 
 	Object.values(formattedEvents).forEach((sheet) =>
 	{
-		sheet.events.sort((a, b) => a.start.getTime() - b.start.getTime())
+		sheet.events.sort((a, b) =>
+		{
+			if (a.end && b.end) return a.end.getTime() - b.end.getTime()
+			else if (a.end) return -1
+			else if (b.end) return 1
+		})
 	})
 
 	return formattedEvents
