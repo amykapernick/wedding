@@ -7,7 +7,17 @@ import notion from './notion'
 const fetchCurrentGuest = async (guestId?: string) =>
 {
 
-	const { emailAddresses } = (await currentUser()) as User;
+	const userData = (await currentUser()) as User;
+
+	if (!userData?.emailAddresses)
+	{
+		return ({
+			guest: null,
+			email: 'none@wedding.com',
+		})
+	}
+
+	const { emailAddresses } = userData
 
 	let filter: any = {
 		property: "GokD",
