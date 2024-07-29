@@ -113,6 +113,18 @@
 			font-size: 0.7em;
 			font-weight: inherit;
 		}
+
+		& .cl-formFieldErrorText {
+			width: 100%;
+			align-items: center;
+			text-transform: none;
+			gap: 1ch;
+
+			& svg {
+				width: 1.5em;
+				height: auto;
+			}
+		}
 	}
 
 	
