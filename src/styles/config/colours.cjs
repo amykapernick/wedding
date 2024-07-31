@@ -8,7 +8,7 @@ const colours = {
 	white: '#ffffff',
 	black: '#0c0c0c',
 	neutral: '@black',
-	background: '@green_light',
+	background: '@green_white',
 	blue: '#0067b7',
 	purple: '#9440a0',
 	blue_light: '#3eccfd',

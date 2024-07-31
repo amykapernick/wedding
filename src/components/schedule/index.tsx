@@ -11,6 +11,7 @@ import Dialog from "@components/dialog";
 
 type ScheduleProps = {
 	type: "guest" | "vendor";
+	vendor?: string
 	events: RunsheetEvent[];
 	startDate: Date;
 	endDate: Date;
@@ -23,7 +24,7 @@ type CustomLocalizer = DateLocalizer & {
 }
 
 const Schedule = (props: ScheduleProps) => {
-	const { startDate, endDate, type } = props;
+	const { startDate, endDate, type, vendor } = props;
 	const numDays = differenceInCalendarDays(endDate, startDate) !== 1 ? differenceInCalendarDays(endDate, startDate) + 1 : differenceInCalendarDays(endDate, startDate);
 	const [events, setEvents] = useState<Event[]>(props?.events ?? [])
 	const [view, setView] = useState<View>(views.default)
@@ -88,6 +89,7 @@ const Schedule = (props: ScheduleProps) => {
 		}
 	}, [props])
 
+	console.log({vendor})
 
 	return (
 		<div 

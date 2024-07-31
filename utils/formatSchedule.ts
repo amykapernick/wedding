@@ -36,19 +36,6 @@ const formatSchedule = (props: formatRunsheetProps) =>
 
 		if (type === 'guest')
 		{
-			// if (eventData.name == "Secret Family Shenanigans")
-			// {
-			// 	// console.log({ ...event.properties.Guests.rollup.array })
-			// 	console.log({
-			// 		guestIds: event.properties.Guests.rollup.array
-			// 			.map(array => array.relation
-			// 				.map(({ id }) => id)
-			// 				.join(',')
-			// 			).join(',')
-			// 	})
-			// 	// console.log({ ...event.properties.GuestIds })
-			// }
-
 			event.properties.Guests.rollup.array
 				.map(array => array.relation
 					.map(({ id }) => id)
@@ -73,8 +60,6 @@ const formatSchedule = (props: formatRunsheetProps) =>
 		// 	formattedEvents[vendor].eventIds.push(event.id)
 		// }
 
-		console.log({ guests: eventData.guests })
-
 		if (eventData.guests.length === Object.entries(guests).length - 1)
 		{
 			eventData.guests = [guestName]
@@ -91,7 +76,7 @@ const formatSchedule = (props: formatRunsheetProps) =>
 		startDate,
 		endDate,
 		guests,
-		type
+		type,
 	}
 }
 

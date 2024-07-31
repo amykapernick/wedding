@@ -31,7 +31,7 @@ const FetchData = async (props: FetchGuestRunsheetProps) => {
 	return (
 		<>
 			{email.toLowerCase() && <TrackEvent name="Signed In" />}
-			<Schedule {...scheduleData} />
+			<Schedule {...scheduleData} vendor={vendor} />
 		</>
 	);
 };
