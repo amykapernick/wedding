@@ -9,7 +9,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { accessors, localizer, views, customComponents, dateFormats } from '@utils/setupCalendar'
 import Dialog from "@components/dialog";
 
-type ScheduleProps = {
+export type ScheduleProps = {
 	type: "guest" | "vendor";
 	vendor?: string
 	events: CalendarEvent[];

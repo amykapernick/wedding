@@ -7,7 +7,7 @@
 module.exports = async (phase, { defaultConfig }) => {
   const nextConfig = {
     ...defaultConfig,
-    reactStrictMode: true,
+    reactStrictMode: false,
     images: {
       remotePatterns: [
         {

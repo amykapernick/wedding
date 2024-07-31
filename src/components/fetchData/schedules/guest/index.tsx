@@ -3,8 +3,9 @@ import { TrackEvent } from "@components/fathom";
 import fetchCurrentGuest from "@utils/fetchData/currentGuest";
 import fetchRunsheetData from "@utils/fetchData/runsheets";
 import fetchGuestData from "@utils/fetchData/guestData";
-import Schedule from "@components/schedule";
+import Schedule, { ScheduleProps } from "@components/schedule";
 import formatSchedule from "@utils/formatSchedule";
+import { CalendarEvent } from "@ts/runsheet";
 
 type FetchGuestRunsheetProps = {
 	guest?: string | null;
@@ -12,7 +13,7 @@ type FetchGuestRunsheetProps = {
 
 const FetchData = async (props: FetchGuestRunsheetProps) => {
 	const { guest, email } = await fetchCurrentGuest(props.guest ?? undefined);
-	const people = await fetchGuestData(guest?.id || '');
+	const people = await fetchGuestData(guest?.id ?? '');
 
 	const peopleIds = guest?.properties.Guests.relation as NotionRelation[];
 
@@ -34,9 +35,7 @@ const FetchData = async (props: FetchGuestRunsheetProps) => {
 		};
 	});
 
-	// console.log({ guestData });
-
-	const scheduleData = formatSchedule({
+	const scheduleData: ScheduleProps = formatSchedule({
 		type: "guest",
 		guests: guestData,
 		events: runsheetEvents.results,
@@ -46,7 +45,10 @@ const FetchData = async (props: FetchGuestRunsheetProps) => {
 	return (
 		<>
 			{email.toLowerCase() && <TrackEvent name="Signed In" />}
-			<Schedule {...scheduleData} />
+			<Schedule 
+				{...scheduleData} 
+				events={scheduleData.events as CalendarEvent[]}
+			/>
 		</>
 	);
 };

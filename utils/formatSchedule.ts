@@ -13,7 +13,17 @@ type formatRunsheetProps = {
 	events: NotionRunsheetEvent[]
 }
 
-const formatSchedule = (props: formatRunsheetProps) =>
+const formatSchedule = (props: formatRunsheetProps):
+	{
+		events: CalendarEvent[]
+		startDate: Date
+		endDate: Date
+		guests: Record<string, {
+			id: string
+			name: string
+		}>
+		type: 'guest' | 'vendor'
+	} =>
 {
 	const { guests, events, type, guestName } = props
 	let formattedEvents: CalendarEvent[] = []
@@ -46,19 +56,12 @@ const formatSchedule = (props: formatRunsheetProps) =>
 				.filter((value, index, self) => self.indexOf(value) === index)
 				.forEach((id: string) =>
 				{
-					// console.log({ id })
 					if (guests[id])
 					{
 						eventData.guests.push(guests[id].name)
 					}
 				})
 		}
-		// else if (type === 'vendor')
-		// {
-		// 	const vendor = sheets[0].id
-		// 	formattedEvents[vendor].events.push(eventData)
-		// 	formattedEvents[vendor].eventIds.push(event.id)
-		// }
 
 		if (eventData.guests.length === Object.entries(guests).length - 1)
 		{
@@ -68,7 +71,7 @@ const formatSchedule = (props: formatRunsheetProps) =>
 		formattedEvents.push({
 			...eventData,
 			title: eventData.name
-		})
+		} as CalendarEvent)
 	})
 
 	return {
