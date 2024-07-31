@@ -2,15 +2,18 @@
 
 .dialog {
 	padding-top: 40px;
-	width: 95vw;
-	max-width: 400px;
+	max-width: max(95vw, 400px);
+	width: max-content;
+	max-height: 80vh;
+	height: max-content;
 	padding-left: 10px;
 	padding-right: 10px;
+	z-index: 100;
+	min-width: unset;
 }
 
 .container {
 	overflow-y: auto;
-	max-height: 80vh;
 	overflow-x: clip;
 }
 
@@ -26,12 +29,16 @@
 	top: 10px;
 	right: 10px;
 	font-size: 2em;
+	width: auto;
+
+	svg {
+		margin: 0;
+	}
 }
 
 @media(min-width: 40em) {
 	.dialog {
-		width: 90vw;
-		max-width: 500px;
+		max-width: max(95vw, 500px);
 		padding: 40px;
 	}
 }

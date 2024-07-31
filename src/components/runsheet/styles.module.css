@@ -65,7 +65,7 @@
 	& tbody {
 		& tr {
 			&:nth-child(2n) {
-				background: $green_light;
+				background: $green_white;
 			} 
 		}
 	}

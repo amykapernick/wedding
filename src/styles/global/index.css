@@ -8,6 +8,8 @@
 
 @import './clerk';
 
+@import './calendar.css';
+
 *, *::before, *::after {
 	box-sizing: border-box;
 	outline-offset: 0.2em;

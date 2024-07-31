@@ -56,6 +56,14 @@ export type RunsheetEvent = {
 	guests: string[];
 }
 
+export type CalendarEvent = RunsheetEvent & {
+	title: string,
+	allDay?: boolean
+	resource?: any
+	guests?: string[]
+	guestId?: number
+}
+
 export type RunsheetData = Record<string, {
 	name: string
 	id: string

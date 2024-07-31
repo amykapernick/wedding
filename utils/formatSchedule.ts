@@ -1,6 +1,7 @@
 import { NotionRunsheetEvent, RunsheetEvent } from "@ts/runsheet"
 import { isBefore } from "date-fns"
 import { formatEvent } from "./formatRunsheet"
+import { CalendarEvent } from "calendar-link"
 
 type formatRunsheetProps = {
 	guestName: string
@@ -15,7 +16,7 @@ type formatRunsheetProps = {
 const formatSchedule = (props: formatRunsheetProps) =>
 {
 	const { guests, events, type, guestName } = props
-	let formattedEvents: RunsheetEvent[] = []
+	let formattedEvents: CalendarEvent[] = []
 	let startDate = new Date(process.env.NEXT_PUBLIC_EVENT_START as string)
 	let endDate = new Date(process.env.NEXT_PUBLIC_EVENT_START as string)
 
@@ -55,7 +56,10 @@ const formatSchedule = (props: formatRunsheetProps) =>
 			eventData.guests = [guestName]
 		}
 
-		formattedEvents.push(eventData)
+		formattedEvents.push({
+			...eventData,
+			title: eventData.name
+		})
 	})
 
 	return {

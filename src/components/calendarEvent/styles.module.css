@@ -1,0 +1,48 @@
+.event {
+	& :global(.rbc-event) {
+		background: var(--event_colour);
+		color: var(--text_colour);
+		border-radius: 0;
+		font-size: 0.8em;
+		line-height: 1.1;
+		padding: 0.1em 0.2em;
+		border: 1px solid $white;
+		box-shadow: 0 1px 10px rgba($neutral, 0.2);
+	}
+
+	& :global(.rbc-event-label) {
+		display: none;
+	}
+
+	& :global(.rbc-event-content) {
+		margin: 0;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 8px;
+		line-height: inherit;
+		align-items: center;
+		align-content: flex-start;
+	}
+}
+
+.title {
+	display: block;
+	font-weight: 600;
+}
+
+.times {
+	display: block;
+	font-weight: 500;
+	font-size: 0.8em;
+	text-align: right;
+}
+
+.notes {
+	display: block;
+	width: 100%;
+	font-style: italic;
+	margin-top: 0.5em;
+	padding-left: 1ch;
+}

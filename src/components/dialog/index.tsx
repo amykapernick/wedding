@@ -1,12 +1,13 @@
 import Close from '@img/icons/close.svg'
 import styles from './styles.module.css'
+import { ReactNode, RefObject, useEffect } from 'react'
 
 type DialogProps = {
-	openButton: React.ReactNode
-	dialog: React.RefObject<HTMLDialogElement>
+	openButton?: ReactNode
+	dialog: RefObject<HTMLDialogElement>
 	closeModal?: () => void
 	openModal?: () => void
-	children: React.ReactNode
+	children: ReactNode
 }
 
 const Dialog = ({ children, openButton, dialog, closeModal, openModal }: DialogProps) =>
@@ -22,6 +23,12 @@ const Dialog = ({ children, openButton, dialog, closeModal, openModal }: DialogP
 		else dialog.current?.showModal()
 	}
 
+	useEffect(() => {
+		if(!openButton) {
+			dialog.current?.showModal()
+		}
+	})
+
 	return (
 		<>
 			<dialog ref={dialog} className={styles.dialog}>
@@ -33,9 +40,11 @@ const Dialog = ({ children, openButton, dialog, closeModal, openModal }: DialogP
 					{children}
 				</div>
 			</dialog>
-			<button className={styles.open} onClick={handleOpen}>
-				{openButton}
-			</button>
+			{openButton &&
+				<button className={styles.open} onClick={handleOpen}>
+					{openButton}
+				</button>
+			}
 		</>
 	)
 }
