@@ -1,6 +1,6 @@
 "use client";
 
-import type { RunsheetEvent } from "@ts/runsheet";
+import type { CalendarEvent } from "@ts/runsheet";
 import styles from "./style.module.css";
 import { add, differenceInCalendarDays, format, set } from "date-fns";
 import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
@@ -12,7 +12,7 @@ import Dialog from "@components/dialog";
 type ScheduleProps = {
 	type: "guest" | "vendor";
 	vendor?: string
-	events: RunsheetEvent[];
+	events: CalendarEvent[];
 	startDate: Date;
 	endDate: Date;
 	guests: Record<string, { id: string; name: string }>;

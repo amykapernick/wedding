@@ -107,7 +107,7 @@ const CustomWeekView = (props: CustomViewProps) =>
 	CustomWeekView.title = (...props: CustomViewTitleProps) =>
 	{
 		const [ date, { localizer } ] = props
-		const [start, ...rest] = CustomWeekView.range(date, { localizer })
+		const [start, ...rest] = CustomWeekView.range(date, { localizer }) as Date[]
 
 		return localizer.format({ start, end: rest.pop() }, 'dayRangeHeaderFormat')
 	}

@@ -12,7 +12,7 @@ type FetchGuestRunsheetProps = {
 
 const FetchData = async (props: FetchGuestRunsheetProps) => {
 	const { guest, email } = await fetchCurrentGuest(props.guest ?? undefined);
-	const people = await fetchGuestData(guest?.id);
+	const people = await fetchGuestData(guest?.id || '');
 
 	const peopleIds = guest?.properties.Guests.relation as NotionRelation[];
 
@@ -21,7 +21,7 @@ const FetchData = async (props: FetchGuestRunsheetProps) => {
 	});
 
 	const runsheetData = formatRunsheet({
-		guestName: guest?.properties.Name.title[0].plain_text,
+		guestName: guest?.properties.Name.title[0].plain_text || '',
 		type: "guest",
 		sheets: people.map(({ properties, id }) => ({
 			id,
