@@ -36,13 +36,35 @@ const formatSchedule = (props: formatRunsheetProps) =>
 
 		if (type === 'guest')
 		{
-			event.properties.GuestIds.formula.string.split(',').forEach((id: string) =>
-			{
-				if (guests[id])
+			// if (eventData.name == "Secret Family Shenanigans")
+			// {
+			// 	// console.log({ ...event.properties.Guests.rollup.array })
+			// 	console.log({
+			// 		guestIds: event.properties.Guests.rollup.array
+			// 			.map(array => array.relation
+			// 				.map(({ id }) => id)
+			// 				.join(',')
+			// 			).join(',')
+			// 	})
+			// 	// console.log({ ...event.properties.GuestIds })
+			// }
+
+			event.properties.Guests.rollup.array
+				.map(array => array.relation
+					.map(({ id }) => id)
+					.join(',')
+				).join(',')
+				.replaceAll('-', '')
+				.split(',')
+				.filter((value, index, self) => self.indexOf(value) === index)
+				.forEach((id: string) =>
 				{
-					eventData.guests.push(guests[id].name)
-				}
-			})
+					// console.log({ id })
+					if (guests[id])
+					{
+						eventData.guests.push(guests[id].name)
+					}
+				})
 		}
 		// else if (type === 'vendor')
 		// {
@@ -50,6 +72,8 @@ const formatSchedule = (props: formatRunsheetProps) =>
 		// 	formattedEvents[vendor].events.push(eventData)
 		// 	formattedEvents[vendor].eventIds.push(event.id)
 		// }
+
+		console.log({ guests: eventData.guests })
 
 		if (eventData.guests.length === Object.entries(guests).length - 1)
 		{

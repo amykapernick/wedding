@@ -78,12 +78,16 @@ const Schedule = (props: ScheduleProps) => {
 			return 0
 		})
 		.map(({name}) => (name))
+		.filter((guest) => {
+			return events.some((event) => event?.guests?.includes(guest))
+		})
 
 	useEffect(() => {
 		if (props?.events) {
 			setEvents(props.events)
 		}
 	}, [props])
+
 
 	return (
 		<div 
