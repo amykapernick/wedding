@@ -23,7 +23,7 @@ type GuestProps = {
 const Guest = ({ people, guest }: GuestProps) => {
 	const [openSection, setOpenSection] = useState(false);
 	const status = statuses[guest.status];
-	const pastDate = new Date("2024-08-05") <= new Date();
+	const pastDate = new Date("2024-08-15") <= new Date();
 	const rsvpOpen = openSection || pastDate;
 
 	console.log({
