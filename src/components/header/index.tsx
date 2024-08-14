@@ -1,12 +1,28 @@
+'use client'
+
 import Image from 'next/image'
 import HeaderImage from '@img/amy_dan.jpg'
 import styles from './styles.module.css'
+import { usePathname } from 'next/navigation'
 
-const Header = () =>
+type HeaderProps = {
+	isAuthenticated: boolean
+}
+
+const Header = (props: HeaderProps) =>
 {
+	const { isAuthenticated } = props
+	const path = usePathname()
+	const compactHeader = (path !== '/') || !isAuthenticated
+
 	return (
-		<header className={styles.header}>
-			<h1 className={styles.heading}>Daniel & Amy <span>are getting married</span></h1>
+		<header 
+			className={[
+				styles.header,
+				compactHeader ? styles.compact : ''
+			].join(' ')}
+		>
+			<p className={styles.heading}>Daniel & Amy <span>are getting married</span></p>
 			<Image
 				src={HeaderImage}
 				alt="Daniel and Amy"

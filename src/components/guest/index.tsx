@@ -36,7 +36,7 @@ const Guest = ({ people, guest }: GuestProps) => {
 
 	return (
 		<section>
-			<h2 id="rsvp">RSVP</h2>
+			<h1 id="rsvp">RSVP</h1>
 			<p className={styles.name}>
 				<span>{guest.name}</span>
 

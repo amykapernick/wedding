@@ -2,6 +2,12 @@
 
 .header {
 	position: relative;
+
+	&.compact {
+		& .image {
+			max-height: 25em;
+		}
+	}
 }
 
 .image {
@@ -25,6 +31,7 @@
 	line-height: 1;
 	left: 50%;
 	transform: translateX(-50%);
+	text-transform: none;
 
 	& span {
 		display: block;
@@ -48,6 +55,14 @@
 }
 
 @media(min-width: 40em) {
+	.header {
+		&.compact {
+			& .image {
+				max-height: 30em;
+			}
+		}
+	}
+
 	.heading {
 		font-size: 6em;
 		top: 10vh;
@@ -59,6 +74,14 @@
 }
 
 @media(min-width: 60em) {
+	.header {
+		&.compact {
+			& .image {
+				max-height: 25em;
+			}
+		}
+	}
+
 	.heading {
 		font-size: 7em;
 
@@ -75,6 +98,15 @@
 }
 
 @media(min-width: 70em) {
+	.header {
+		&.compact {
+			& .image {
+				max-height: 25em;
+				object-position: center 50%;
+			}
+		}
+	}
+
 	.button {	
 		bottom: auto;
 		top: 50px;
