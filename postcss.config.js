@@ -1,30 +1,31 @@
-const colours = require('./src/styles/config/colours.cjs')
-const variables = require('./src/styles/config/variables.cjs');
+const colours = require(`./src/styles/config/colours.cjs`);
+const variables = require(`./src/styles/config/variables.cjs`);
 
 module.exports = {
 	plugins: [
 		[
-			'postcss-advanced-variables',
+			`postcss-advanced-variables`,
 			{
 				variables: {
 					...colours,
-					...variables
+					...variables,
 				},
-			}
+			},
 		],
-		'postcss-hexrgba',
+		`postcss-hexrgba`,
 		[
-			'postcss-nesting',
+			`postcss-nesting`,
 			{
-				noIsPseudoSelector: true
-			}
+				noIsPseudoSelector: true,
+			},
 		],
 		[
-			'stylelint',
+			`stylelint`,
 			{
 				configFile: `./config/stylelint.config.cjs`,
-				fix: true
-			}
-		]
+				fix: true,
+				quiet: true,
+			},
+		],
 	],
-}; 
+};

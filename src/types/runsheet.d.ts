@@ -24,9 +24,13 @@ export type NotionRunsheetEvent = {
 		}
 		Guests: {
 			rollup: {
-				array: {
-					id: string
-				}[]
+				array: [
+					{
+						relation: {
+							id: string
+						}[]
+					}
+				]
 			}
 		}
 		GuestIds: {

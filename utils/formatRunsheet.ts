@@ -64,6 +64,8 @@ const formatRunsheet = (props: formatRunsheetProps) =>
 	const { sheets, events, guestName, type } = props
 	let formattedEvents: RunsheetData = {}
 
+	console.log({sheets, events})
+
 	sheets?.forEach(({ id, name }) =>
 	{
 		formattedEvents[id.replaceAll('-', '')] = {
@@ -92,6 +94,27 @@ const formatRunsheet = (props: formatRunsheetProps) =>
 					formattedEvents[id].eventIds?.push(event.id)
 				}
 			})
+
+			event.properties.Guests.rollup.array
+				.map(array => array.relation
+					.map(({ id }) => id)
+					.join(',')
+				).join(',')
+				.replaceAll('-', '')
+				.split(',')
+				.filter((value, index, self) => self.indexOf(value) === index)
+				.forEach((id: string) =>
+				{
+					if (
+						formattedEvents?.[id]
+						&& formattedEvents[id].eventIds
+						&& !formattedEvents[id].eventIds?.includes(event.id)
+					)
+					{
+						formattedEvents[id].events.push(eventData)
+						formattedEvents[id].eventIds?.push(event.id)
+					}
+				})
 		}
 		else if (type === 'vendor')
 		{
