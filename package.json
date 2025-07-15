@@ -39,7 +39,7 @@
 		"stylelint-use-nesting": "^5.1.1"
 	},
 	"dependencies": {
-		"@clerk/nextjs": "^5.2.2",
+		"@clerk/nextjs": "^6.21.0",
 		"@devexpress/dx-react-core": "^4.0.8",
 		"@devexpress/dx-react-scheduler": "^4.0.8",
 		"@devexpress/dx-react-scheduler-material-ui": "^4.0.8",
